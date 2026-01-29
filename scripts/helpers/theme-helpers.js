@@ -102,10 +102,14 @@ hexo.extend.helper.register("renderJS", function (path, options = {}) {
   const _js = hexo.extend.helper.get("js").bind(this);
   const { module = false, async = false, swupReload = false } = options;
 
+  // Check if running in server mode (local preview)
+  const isServer = hexo.env.cmd === "server" || hexo.env.cmd === "s";
+  const startPath = isServer ? "js/" : "js/build/";
+
   if (Array.isArray(path)) {
-    path = path.map((p) => "js/build/" + p);
+    path = path.map((p) => startPath + p);
   } else {
-    path = "js/build/" + path;
+    path = startPath + path;
   }
 
   const cdnProviders = {

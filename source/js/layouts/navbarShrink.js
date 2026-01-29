@@ -8,12 +8,12 @@ export const navbarShrink = {
 
   init() {
     this.navbarHeight = this.navbarDom.getBoundingClientRect().height;
-    this.shrink();
+    // this.shrink();
     this.togglenavbarDrawerShow();
     this.toggleSubmenu();
-    window.addEventListener("scroll", () => {
-      this.shrink();
-    });
+    // window.addEventListener("scroll", () => {
+    //   this.shrink();
+    // });
   },
 
   shrink() {
@@ -128,7 +128,7 @@ try {
     navigationState.isNavigating = true;
     document.body.classList.remove("navbar-shrink");
   });
-} catch (error) {}
+} catch (error) { }
 
 document.addEventListener("DOMContentLoaded", () => {
   navbarShrink.init();
