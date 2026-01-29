@@ -1,26 +1,40 @@
+/* ========================================================================================
+   MARKDOWN BODY 样式 - 使用 Stylus 预处理器编写
+   ========================================================================================
+   [Stylus 特性说明]:
+   1. 嵌套: Stylus 允许选择器嵌套，不需要写大量的重复前缀。
+   2. 变量: 以 $ 开头的符号，值定义在 variables.styl 中。
+   3. Mixins: 使用 + 前缀调用（如 +redefine-tablet()），用于快速生成响应式代码。
+   4. 语法省略: Stylus 可以省略大括号 {}、冒号 : 和分号 ;。
+   ======================================================================================== */
+
 .markdown-body
+  /* [变量使用]: $english-font-family 等变量在 common/variables.styl 中定义 */
   font-family $english-font-family, $chinese-font-family, sans-serif
   font-size $default-article-font-size
 
+  /* [嵌套选择器]: 这里的 blockquote 等同于 .markdown-body blockquote */
   blockquote
+    /* [多重嵌套]: 等同于 .markdown-body blockquote p, .markdown-body blockquote ul ... */
     p, ul, ol
       padding 5px 5px 5px 10px
 
     box-sizing border-box
-    margin 20px 0
-    color var(--default-text-color)
+    margin 2em 3em
+    color var(--default-text-color) /* [标准 CSS 变量]: 使用 var() 调用全局 CSS 变量 */
+    font-style italic
     background var(--third-background-color)
     padding 0 1rem 0 0.5rem
-    border-radius 0 $redefine-border-radius-medium $redefine-border-radius-medium 0
+    border-radius 0
     position relative
-    border-left 5px solid var(--default-text-color)
+    border-left 5px solid var(--border-color)
 
   p
     line-height $default-line-height
     color var(--default-text-color)
-    font-weight 400
-    margin-bottom 1rem
-    margin-top 0
+    font-weight normal
+    margin-bottom 1.5rem
+    margin-top 1.5rem
 
   a
     position relative
@@ -28,13 +42,13 @@
     text-decoration underline
     overflow-wrap break-word
     cursor pointer
-    // border-bottom 1px solid var(--third-text-color)
     box-sizing border-box
     padding-bottom 2px
     text-underline-offset 2px
-    text-decoration-color var(--fourth-text-color)
+    text-decoration-color rgb(196, 160, 160)
     transition: text-decoration-color 0.2s ease
 
+    /* [父级引用]: & 代表 a，所以 &.link 等同于 a.link */
     &.link
       padding-right 0.1em
 
@@ -47,19 +61,19 @@
     .link-icon
       transition transform 0.2s ease
 
+    /* [伪类嵌套]: & 代表 a，等同于 a:hover, a:focus */
     &:hover,
     &:focus
       text-decoration underline !important
-      text-decoration-color var(--primary-color) !important
+      text-decoration-color rgb(246, 59, 59)!important 
 
       .link-icon
         transform translate(0.1em, -0.1em)
 
+      /* [伪元素嵌套]: 等同于 a:hover::after 等 */
       &::after
-        background var(--primary-color)
+        background #f63b3b
         text-decoration underline
-
-
 
   strong
     color var(--default-text-color)
@@ -72,42 +86,38 @@
   em
     color var(--default-text-color)
 
+  /* 列表样式增强 */
   ul > li, ol > li
-    margin-left 20px
-    line-height 2rem
+    color var(--second-text-color)
+    margin-left 3em
+    line-height $default-line-height
+    &::marker
+      color var(--border-color)
 
   ul
-    margin-bottom 1.2rem
-
+    margin-bottom 1.5rem
     li
       list-style disc
-
       ul
         li
           list-style circle
-
           ul
             li
               list-style square
 
   ol
-    margin-bottom 1.2rem
-
+    margin-bottom 1.5rem
     li
       list-style decimal
-
       ul
         li
           list-style disc
-
         ul
           li
             list-style circle
-
       ol
         li
           list-style upper-alpha
-
           ol
             li
               list-style upper-roman
@@ -115,19 +125,23 @@
   li
     color var(--default-text-color)
 
+  /* 标题群组样式 */
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     font-family $english-font-family, $chinese-font-family, sans-serif
     color var(--second-text-color)
     line-height $default-line-height
 
+    /* [Mixin 调用]: +redefine-tablet() 会生成针对平板电脑的媒体查询 */
     +redefine-tablet()
       line-height: $default-line-height * 0.96
 
+  /* 各级标题具体设置 */
   h1, .h1
-    font-size 3.2rem
+    font-size 2.5rem
     font-weight 650
-    border-bottom solid 2px var(--fourth-text-color)
-    margin-top $h1-heading-margin-top
+    padding-bottom 1.5rem /* padding-bottom 控制文字与下边框的间距 */
+    border-bottom solid 5px var(--fourth-text-color)
+    margin-top $h1-heading-margin-top /* [变量使用]: 从配置读取的上边距 */
     margin-bottom 1rem
     letter-spacing -0.025em
     line-height 1.2
@@ -137,10 +151,10 @@
       line-height 1.2
 
   h2, .h2
-    font-size 2.5rem
+    font-size 1.8rem
     font-weight 650
-    padding 3px 0
-    border-bottom solid 2px var(--fourth-text-color)
+    // padding 3px 0
+    // border-bottom solid 2px var(--fourth-text-color)
     margin-top $h2-heading-margin-top
     margin-bottom 1rem
     letter-spacing -0.025em
@@ -151,7 +165,7 @@
       line-height 1.1
 
   h3, .h3
-    font-size 1.8rem
+    font-size 1.5rem
     font-weight 600
     margin-top $h3-heading-margin-top
     margin-bottom 0.75rem
@@ -163,7 +177,7 @@
       line-height 1.2
 
   h4, .h4
-    font-size 1.5rem
+    font-size 1.38rem
     font-weight 600
     margin-top $h4-heading-margin-top
     margin-bottom 0.75rem
@@ -174,7 +188,7 @@
       line-height 1.3
 
   h5, .h5
-    font-size 1.28rem
+    font-size 1.2rem
     font-weight 600
     margin-top $h5-heading-margin-top
     margin-bottom 0.5rem
@@ -185,7 +199,7 @@
       line-height 1.2
 
   h6, .h6
-    font-size 1.2rem
+    font-size 1.1rem
     font-weight 600
     margin-top $h6-heading-margin-top
     margin-bottom 0.5rem
@@ -195,21 +209,22 @@
       font-size 1.1rem
       line-height 1.1
 
+  // img
+  //   box-sizing border-box
+  //   border-radius $usr-img-border-radius
+  //   max-width 100%
+  //   cursor zoom-in
+  //   display block
+  //   /* [自定义函数]: transition-t() 是在 animated.styl 中定义的 mixin，用于简化过度的编写 */
+  //   transition-t('padding, margin', '0, 0', '0.2, 0.2', 'linear, linear')
 
-  img
-    box-sizing border-box
-    border-radius $usr-img-border-radius
-    max-width 100%
-    cursor zoom-in
-    display block
-    transition-t('padding, margin', '0, 0', '0.2, 0.2', 'linear, linear')
+  //   /* [逻辑判断]: hexo-config() 用于读取主题配置文件 _config.redefine.yml 中的设置 */
+  //   if (hexo-config('articles.style.image_alignment') == 'center')
+  //     margin 1rem auto 1rem
+  //   else
+  //     margin 1rem 0 1rem
 
-    if (hexo-config('articles.style.image_alignment') == 'center')
-      margin 1rem auto 1rem
-    else
-      margin 1rem 0 1rem
-
-  
+  /* 删除线遮罩效果 (Spoiler 效果) */
   del.mask
     text-decoration none !important
     transition .2s cubic-bezier(.25, .46, .45, .94) color, .2s cubic-bezier(.25, .46, .45, .94) background
@@ -217,26 +232,24 @@
     * 
       transition .35s cubic-bezier(.25, .46, .45, .94) opacity
 
+    /* 悬停显示隐藏内容 */
     &:not(:hover)
       color transparent !important
       background #000 !important
-
       * 
         opacity 0 !important
-
       &, *
         border none !important
 
-  
-
+  /* 表格样式 */
   & > table,
   .tab-pane > table
     border-spacing 0
     border-collapse collapse
     width 100%
     overflow auto
-    margin-bottom 1.2rem
-    margin-top 1rem
+    margin-bottom 2em
+    margin-top 2em
     box-shadow var(--redefine-box-shadow-flat)
     border-radius $redefine-border-radius-medium
 
@@ -244,10 +257,8 @@
       th
         border-bottom 1px solid var(--shadow-color-1)
         background-color var(--third-background-color) !important
-
         &:first-child
           border-top-left-radius $redefine-border-radius-medium
-
         &:last-child
           border-top-right-radius $redefine-border-radius-medium
 
@@ -257,31 +268,30 @@
           td
             &:first-child
               border-bottom-left-radius $redefine-border-radius-medium
-
             &:last-child
               border-bottom-right-radius $redefine-border-radius-medium
 
     td, th
       padding 8px 16px
-      // border 1px solid var(--border-color)
       border-left 1px solid var(--shadow-color-1)
-
       &:first-child
         border-left none
 
     tr
       background-color var(--background-color)
-      // border 1px solid var(--fourth-text-color)
 
+    /* 隔行变色 (Striped Table) */
     tr:nth-child(2n)
       background-color var(--second-background-color)
 
+  /* 数学公式容器 (MathJax) */
   mjx-container
     display inline
     overflow-x auto
     white-space nowrap
     margin 0 0.2rem
 
+    /* 滚动条自定义样式的 Stylus 嵌套简化写法 */
     &:hover::-webkit-scrollbar-thumb
       border 3px solid rgba(183, 183, 183, 0.3)
 
@@ -301,8 +311,7 @@
       transition all 0.2s ease
 
     svg
-      display inline-block /* Allow content to be centered properly */
-
+      display inline-block
 
   mjx-container[display="true"]
     display block
@@ -311,7 +320,7 @@
     overflow-x auto
     text-align center
     white-space nowrap
-    scrollbar-width: thin  // For Firefox, if needed
+    scrollbar-width: thin
     padding-bottom 8px
 
     &:hover::-webkit-scrollbar-thumb
@@ -332,6 +341,6 @@
       border 3px solid rgba(183, 183, 183, 0)
       transition all 0.2s ease
 
-
     svg
       display inline-block
+

@@ -1,6 +1,6 @@
 /* 重置 figure 标签的浏览器默认样式 */
 figure.hexo-img-ext-container {
-	margin: 2em 0;
+	margin: 2rem 0;
 	/* 靠左对齐，同时重置浏览器默认的 padding */
 	padding: 0;
 }
@@ -16,7 +16,7 @@ figure.hexo-img-ext-container {
 /* 容器基础设置 */
 .hexo-img-ext-container {
 	display: block;
-	margin: 2em 0;
+	margin: 2rem 0;
 	/* 靠左对齐 */
 	max-width: 100%;
 	/* 防止在移动端溢出 */
@@ -64,15 +64,15 @@ figure.hexo-img-ext-container {
 
 /* 描述区域：灰色背景空间 */
 .img-caption {
-	background-color: var(--second-background-color);
+	background-color: var(--color-background-color-transparent);
 	/* 灰色背景 */
 	color: var(--third-text-color);
 	padding: 10px 15px;
 	text-align: center;
-	border-top: 1px solid var(--border-color);
+	border-top: 3px solid var(--border-color);
 	/* 分隔线 */
 	font-size: 0.9em;
-	line-height: 1.5;
+	line-height: 2;
 }
 
 /* 描述文字：Markdown 产生的斜体对应 em 标签 */
