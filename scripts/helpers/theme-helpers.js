@@ -18,7 +18,7 @@ hexo.extend.helper.register("isHomePagePagination", function (pagePath, route) {
 hexo.extend.filter.register("after_post_render", function (data) {
   // Only process if not already processed
   if (data._processedHighlight) return data;
-  
+
   // Updated pattern to include numbers and other special characters
   const pattern = /<figure class="highlight ([^"]+)">([\s\S]*?)<\/figure>/g;
   data.content = data.content.replace(pattern, function (match, p1, p2) {
@@ -99,7 +99,7 @@ hexo.extend.helper.register("getPostUrl", function (rootUrl, path) {
 });
 
 hexo.extend.helper.register("renderJS", function (path, options = {}) {
-  const _js = hexo.extend.helper.get("js").bind(hexo);
+  const _js = hexo.extend.helper.get("js").bind(this);
   const { module = false, async = false, swupReload = false } = options;
 
   if (Array.isArray(path)) {
@@ -137,9 +137,8 @@ hexo.extend.helper.register("renderJS", function (path, options = {}) {
         const customUrl = cdnBase
           .replace(":version", themeVersion)
           .replace(":path", path);
-        scriptTag = `<script ${typeAttr} src="${
-          this.theme.cdn.enable ? customUrl : _js({ src: path })
-        }" ${swupAttr}></script>`;
+        scriptTag = `<script ${typeAttr} src="${this.theme.cdn.enable ? customUrl : _js({ src: path })
+          }" ${swupAttr}></script>`;
       } else {
         scriptTag = `<script ${typeAttr} src="${cdnBase
           .replace(":version", themeVersion)
@@ -169,7 +168,7 @@ hexo.extend.helper.register("renderJS", function (path, options = {}) {
 });
 
 hexo.extend.helper.register("renderCSS", function (path) {
-  const _css = hexo.extend.helper.get("css").bind(hexo);
+  const _css = hexo.extend.helper.get("css").bind(this);
 
   const cdnProviders = {
     zstatic:
@@ -226,7 +225,7 @@ hexo.extend.helper.register("checkDeprecation", function (condition, id, message
     if (!global.deprecationWarnings) {
       global.deprecationWarnings = new Set();
     }
-    
+
     if (!global.deprecationWarnings.has(id)) {
       hexo.log.warn(`${message}`);
       global.deprecationWarnings.add(id);
@@ -238,7 +237,7 @@ hexo.extend.helper.register("checkDeprecation", function (condition, id, message
 
 hexo.extend.helper.register("configOptions", function (obj, indent = '  ') {
   if (!obj || typeof obj !== 'object') return '';
-  
+
   return Object.entries(obj)
     .filter(([key, value]) => value !== undefined && value !== null && value !== '')
     .map(([key, value]) => {
