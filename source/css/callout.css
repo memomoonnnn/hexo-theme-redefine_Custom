@@ -1,0 +1,181 @@
+/* Callout 基础容器 */
+.callout {
+	border: 1px solid rgba(96, 96, 96, 0.1);
+	/* 设置边框样式 (宽度 类型 颜色) */
+	border-left: 5px solid;
+	/* 单独设置左边框样式，通常用于强调装饰 */
+	border-radius: 16px;
+	/* 设置圆角大小 */
+	margin: 2em 0;
+	/* 设置元素外边距 (上下 左右) */
+	padding: 0;
+	/* 设置元素内边距 */
+	background-color: rgba(255, 255, 255, 0.05);
+	/* 设置背景颜色 (此处为适配暗色/亮色模式的基础底色) */
+	overflow: hidden;
+	/* 控制内容溢出容器时的显示方式 (此处用于确保圆角生效) */
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+	/* 设置阴影 (水平偏移 垂直偏移 模糊半径 颜色)，此处为底部微弱阴影 */
+}
+
+/* 标题部分 */
+.callout-title {
+	padding: 12px 16px;
+	font-weight: bold;
+	/* 设置字体粗细 */
+	background-color: rgba(255, 255, 255, 0.1);
+	display: flex;
+	/* 定义显示类型为弹性布局 */
+	align-items: center;
+	/* Flex 布局中侧轴(垂直方向)居中对齐 */
+	cursor: pointer;
+	/* 设置鼠标悬停时的指针样式 (表明可点击，针对可折叠类型) */
+	user-select: none;
+	/* 控制用户是否可以选择文本 (防止点击折叠时误选中文本) */
+}
+
+/* 内容部分 */
+.callout-content {
+	padding: 12px 16px;
+	border-top: 1px solid rgba(96, 96, 96, 0.1);
+	/* 单独设置上边框样式 */
+}
+
+/* 消除内容首尾多余边距 */
+.callout-content> :first-child {
+	margin-top: 0;
+	/* 单独设置上外边距 */
+}
+
+.callout-content> :last-child {
+	margin-bottom: 0;
+	/* 单独设置下外边距 */
+}
+
+/* --- 定义不同类型的颜色 (参考 Obsidian 默认色) --- */
+
+.callout-abstract {
+	border-left-color: #00bfbc;
+	/* 单独设置左边框颜色 */
+	background-color: rgba(0, 191, 188, 0.1);
+}
+
+.callout-abstract .callout-title {
+	color: #00bfbc;
+	/* 设置文本颜色 */
+}
+
+/* Info (蓝色) */
+.callout-info {
+	border-left-color: #086ddd;
+	/* 单独设置左边框颜色 */
+	background-color: rgba(8, 109, 221, 0.1);
+}
+
+.callout-info .callout-title {
+	color: #086ddd;
+	/* 设置文本颜色 */
+}
+
+/* Note (灰色/默认) */
+.callout-note {
+	border-left-color: #086ddd;
+	background-color: rgba(8, 109, 221, 0.1);
+}
+
+.callout-note .callout-title {
+	color: #086ddd;
+}
+
+/* Warning (橙色) */
+.callout-warning {
+	border-left-color: #ec7500;
+	background-color: rgba(236, 117, 0, 0.1);
+}
+
+.callout-warning .callout-title {
+	color: #ec7500;
+}
+
+/* Success / Tip (绿色) */
+.callout-tip {
+	border-left-color: #00bfbc;
+	background-color: rgba(0, 191, 188, 0.1);
+}
+
+.callout-tip .callout-title {
+	color: #00bfbc;
+}
+
+/* Example (蓝色/紫色) */
+.callout-example {
+	border-left-color: #7852ee;
+	background-color: rgba(120, 82, 238, 0.1);
+}
+
+.callout-example .callout-title {
+	color: #7852ee;
+}
+
+/* Font Awesome Icon 适配 */
+.callout-icon {
+	margin-right: 8px;
+	/* 单独设置右外边距 */
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+}
+
+/* --- 修复 Callout 内部表格样式 (适配 Redefine 主题) --- */
+.callout-content table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+	overflow: auto;
+	margin-bottom: 1.2rem;
+	margin-top: 1rem;
+	box-shadow: var(--redefine-box-shadow-flat, 0 8px 20px rgba(0, 0, 0, 0.05));
+	border-radius: 14px;
+}
+
+.callout-content table thead th {
+	border-bottom: 1px solid var(--shadow-color-1);
+	background-color: var(--third-background-color) !important;
+}
+
+.callout-content table thead th:first-child {
+	border-top-left-radius: 14px;
+}
+
+.callout-content table thead th:last-child {
+	border-top-right-radius: 14px;
+}
+
+.callout-content table tbody tr:last-child td:first-child {
+	border-bottom-left-radius: 14px;
+}
+
+.callout-content table tbody tr:last-child td:last-child {
+	border-bottom-right-radius: 14px;
+}
+
+.callout-content table td,
+.callout-content table th {
+	padding: 8px 16px;
+	border-left: 1px solid var(--shadow-color-1);
+}
+
+.callout-content table td:first-child,
+.callout-content table th:first-child {
+	border-left: none;
+}
+
+.callout-content table tr {
+	background-color: var(--background-color);
+}
+
+.callout-content table tr:nth-child(2n) {
+	background-color: var(--second-background-color);
+}

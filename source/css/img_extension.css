@@ -1,0 +1,82 @@
+/* 重置 figure 标签的浏览器默认样式 */
+figure.hexo-img-ext-container {
+	margin: 2em 0;
+	/* 靠左对齐，同时重置浏览器默认的 padding */
+	padding: 0;
+}
+
+/* 重置 img 标签的默认样式，消除可能的空隙 */
+.hexo-img-ext-container img {
+	margin: 0;
+	padding: 0;
+	display: block;
+	/* 确保图片作为块级元素，消除行内元素的 baseline 空白 */
+}
+
+/* 容器基础设置 */
+.hexo-img-ext-container {
+	display: block;
+	margin: 2em 0;
+	/* 靠左对齐 */
+	max-width: 100%;
+	/* 防止在移动端溢出 */
+	border: 1px solid var(--border-color);
+	/* 灰色边框 */
+	border-radius: 16px;
+	/* 圆角 */
+	overflow: hidden;
+	/* 确保内部内容不溢出圆角 */
+	box-sizing: border-box;
+	box-shadow: var(--redefine-box-shadow);
+}
+
+/* 带有描述时的卡片样式 */
+.hexo-img-ext-container.with-caption {
+	border: 1px solid var(--border-color);
+	/* 灰色边框 */
+	border-radius: 16px;
+	/* 容器也需要圆角以包裹内容 */
+	overflow: hidden;
+	/* 确保内部内容不溢出圆角 */
+	box-sizing: border-box;
+	box-shadow: var(--redefine-box-shadow);
+}
+
+/* 图片包裹层（用于微调图片位置） */
+.hexo-img-ext-container .img-wrapper {
+	width: 100%;
+	/* 这里不需要设 border-radius，因为 img 标签本身已经内联了 16px */
+	/* 但为了贴合边框设计，可能需要去除底部的圆角 */
+}
+
+/* 特殊处理：当有边框包裹时，图片底部圆角应该变直，与下方描述区衔接？
+   根据你的描述“延伸到下方突出一个灰色背景空间”，通常这种设计图片底部是直角，
+   或者图片保持全圆角但背景在下方。
+   下面的样式实现了：图片保持自身16px圆角，但为了美观，通常在卡片模式下，
+   我们会让图片底部变直，上方保持圆角。如果你严格需要图片四角都16px，请忽略下方 .img-wrapper img 的覆盖。
+*/
+
+/* 建议：在卡片模式下，图片底部变直角，以便与灰色区域无缝衔接 */
+.hexo-img-ext-container.with-caption img {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+/* 描述区域：灰色背景空间 */
+.img-caption {
+	background-color: var(--second-background-color);
+	/* 灰色背景 */
+	color: var(--third-text-color);
+	padding: 10px 15px;
+	text-align: center;
+	border-top: 1px solid var(--border-color);
+	/* 分隔线 */
+	font-size: 0.9em;
+	line-height: 1.5;
+}
+
+/* 描述文字：Markdown 产生的斜体对应 em 标签 */
+.img-caption em {
+	font-style: italic;
+	/* 可选：用衬线体增强斜体美感 */
+}
