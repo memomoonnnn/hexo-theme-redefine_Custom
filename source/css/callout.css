@@ -14,7 +14,7 @@
 	/* 设置背景颜色 (此处为适配暗色/亮色模式的基础底色) */
 	overflow: hidden;
 	/* 控制内容溢出容器时的显示方式 (此处用于确保圆角生效) */
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+	box-shadow: var(--redefine-deeper-shadow);
 	/* 设置阴影 (水平偏移 垂直偏移 模糊半径 颜色)，此处为底部微弱阴影 */
 }
 
@@ -136,7 +136,7 @@
 	overflow: auto;
 	margin-bottom: 1.2rem;
 	margin-top: 1rem;
-	box-shadow: var(--redefine-box-shadow-flat, 0 8px 20px rgba(0, 0, 0, 0.05));
+	box-shadow: var(--redefine-box-shadow-flat, var(--redefine-deeper-shadow));
 	border-radius: 14px;
 }
 
