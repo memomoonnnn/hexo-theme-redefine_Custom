@@ -1,13 +1,3 @@
-/* ========================================================================================
-   MARKDOWN BODY 样式 - 使用 Stylus 预处理器编写
-   ========================================================================================
-   [Stylus 特性说明]:
-   1. 嵌套: Stylus 允许选择器嵌套，不需要写大量的重复前缀。
-   2. 变量: 以 $ 开头的符号，值定义在 variables.styl 中。
-   3. Mixins: 使用 + 前缀调用（如 +redefine-tablet()），用于快速生成响应式代码。
-   4. 语法省略: Stylus 可以省略大括号 {}、冒号 : 和分号 ;。
-   ======================================================================================== */
-
 .markdown-body
   /* [变量使用]: $english-font-family 等变量在 common/variables.styl 中定义 */
   font-family $english-font-family, $chinese-font-family, sans-serif
@@ -35,6 +25,7 @@
     font-weight normal
     margin-bottom 1.5rem
     margin-top 1.5rem
+    text-align justify
 
   a
     position relative
