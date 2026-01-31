@@ -1,0 +1,74 @@
+.audio-player-container-wrapper
+  width: 100%
+  margin: 1.5rem 0
+  padding: 0 1rem
+
+.audio-player-container
+  position: relative
+  display: flex
+  align-items: center
+  background: var(--second-background-color)
+  border: 1px solid var(--border-color)
+  border-radius: 16px
+  padding: 1.5rem
+  box-shadow: var(--redefine-box-shadow-flat)
+  transition: all 0.3s ease
+  
+  --audio-primary-color: #ff5722
+  --audio-progress-color: #ff5722
+  --audio-wave-color: var(--invert-text-color)
+
+  &:hover
+    box-shadow: var(--redefine-box-shadow-hover)
+    transform: translateY(-2px)
+
+  .audio-controls-wrapper
+    display: flex
+    align-items: center
+    width: 100%
+    gap: 1rem
+
+  .audio-play-pause-btn
+    width: 40px
+    height: 40px
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 50%
+    background: var(--audio-primary-color)
+    color: #fff
+    cursor: pointer
+    transition: transform 0.2s ease
+    flex-shrink: 0
+    
+    &:hover
+      transform: scale(1.1)
+      
+    i
+      font-size: 1.2rem
+      margin-left: 2px // visual correction for play icon
+
+    &.paused
+      i
+        margin-left: 0
+
+  .audio-info
+    flex: 1
+    display: flex
+    flex-direction: column
+    justify-content: center
+    min-width: 0
+
+  .audio-waveform
+    width: 100%
+    height: 40px
+    cursor: pointer
+    position: relative
+
+  .audio-time
+    font-size: 0.8rem
+    color: var(--default-text-color)
+    opacity: 0.8
+    margin-top: 4px
+    display: flex
+    justify-content: space-between
