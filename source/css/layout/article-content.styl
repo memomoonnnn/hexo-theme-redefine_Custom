@@ -41,7 +41,8 @@ $gap = 30px
           // background var(--avatar-background-color)
 
     .article-header, .article-header-meta-info
-      margin-top 16px
+      margin-top 32px
+      margin-bottom 16px
 
       +redefine-tablet()
         transform scale(0.9)
@@ -233,3 +234,13 @@ $gap = 30px
       text-align center
       font-size 0.9rem
       color var(--third-text-color)
+
+// 针对有封面图的标题
+.article-title-cover
+  font-family 'GlowSans-Extended', sans-serif !important 
+  font-weight: 700
+
+// 针对无封面图的标题 (常规)
+.article-title-regular
+  font-family 'ShuHei', sans-serif !important 
+  font-weight: 700

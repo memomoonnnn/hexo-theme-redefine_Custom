@@ -1,0 +1,29 @@
+@font-face {
+	font-family: 'GlowSans-Extended';
+	src:
+		url('GlowSansSC-Extended-Bold.woff2') format('woff2'),
+		url('GlowSansSC-Extended-Bold.woff') format('woff');
+	font-weight: 700;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GlowSans-Normal';
+	src:
+		url('GlowSansSC-Normal-Bold.woff2') format('woff2'),
+		url('GlowSansSC-Normal-Bold.woff') format('woff');
+	font-weight: 700;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GlowSans-Compressed';
+	src:
+		url('GlowSansSC-Compressed-Book.woff2') format('woff2'),
+		url('GlowSansSC-Compressed-Book.woff') format('woff');
+	font-weight: 400;
+	font-display: swap;
+	font-style: normal;
+}
