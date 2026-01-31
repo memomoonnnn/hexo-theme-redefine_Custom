@@ -49,14 +49,7 @@ figure.hexo-img-ext-container {
 	/* 但为了贴合边框设计，可能需要去除底部的圆角 */
 }
 
-/* 特殊处理：当有边框包裹时，图片底部圆角应该变直，与下方描述区衔接？
-   根据你的描述“延伸到下方突出一个灰色背景空间”，通常这种设计图片底部是直角，
-   或者图片保持全圆角但背景在下方。
-   下面的样式实现了：图片保持自身16px圆角，但为了美观，通常在卡片模式下，
-   我们会让图片底部变直，上方保持圆角。如果你严格需要图片四角都16px，请忽略下方 .img-wrapper img 的覆盖。
-*/
-
-/* 建议：在卡片模式下，图片底部变直角，以便与灰色区域无缝衔接 */
+/* 在卡片模式下，图片底部变直角，以便与灰色区域无缝衔接 */
 .hexo-img-ext-container.with-caption img {
 	border-bottom-left-radius: 0 !important;
 	border-bottom-right-radius: 0 !important;
@@ -64,7 +57,7 @@ figure.hexo-img-ext-container {
 
 /* 描述区域：灰色背景空间 */
 .img-caption {
-	background-color: var(--color-background-color-transparent);
+	background-color: var(--third-background-color);
 	/* 灰色背景 */
 	color: var(--third-text-color);
 	padding: 10px 15px;
