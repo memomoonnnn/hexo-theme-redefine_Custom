@@ -1,6 +1,5 @@
 /* main function */
 
-import { initTocToggle } from "../tools/tocToggle.js";
 import { main } from "../main.js";
 export function initTOC() {
   const utils = {
@@ -68,31 +67,12 @@ export function initTOC() {
       });
     },
 
-    showTOCAside() {
-      const openHandle = () => {
-        const styleStatus = main.getStyleStatus();
-        const key = "isOpenPageAside";
-        if (styleStatus && styleStatus.hasOwnProperty(key)) {
-          initTocToggle().pageAsideHandleOfTOC(styleStatus[key]);
-        } else {
-          initTocToggle().pageAsideHandleOfTOC(true);
-        }
-      };
+    // showTOCAside removed
 
-      const initOpenKey = "init_open";
-
-      if (theme.articles.toc.hasOwnProperty(initOpenKey)) {
-        theme.articles.toc[initOpenKey]
-          ? openHandle()
-          : initTocToggle().pageAsideHandleOfTOC(false);
-      } else {
-        openHandle();
-      }
-    },
   };
 
   if (utils.navItems.length > 0) {
-    utils.showTOCAside();
+    // utils.showTOCAside();
     utils.registerTOCScroll();
   } else {
     document
@@ -110,6 +90,6 @@ try {
   swup.hooks.on("page:view", () => {
     initTOC();
   });
-} catch (e) {}
+} catch (e) { }
 
 document.addEventListener("DOMContentLoaded", initTOC);
