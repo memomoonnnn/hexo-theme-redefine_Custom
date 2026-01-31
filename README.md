@@ -1,10 +1,22 @@
-# 修改自EvanNotFound的Hexo主题Redefine
+## 修改自EvanNotFound的Hexo主题Redefine
 
 使用Antigravity~~开发~~，AI率百分之百
 
 ---
 
-- 调整视觉效果
-- 优化了文档排版样式
-- 添加了对Obsidian原生Callout语法的支持，使可以正常渲染`>[!tip]`等类型的Callout块
-- 添加了对Obsidian图片嵌入语法的支持，使可以正常渲染用`![Caption|Size](url)`插入的图片
+### 调整视觉效果
+
+- 关闭navbar随滚动收缩的效果
+- 删除TOC开关，始终让文章保持在页面中心
+
+### 优化了文档排版样式
+
+- 优化H1~H6的比例及字重
+- 删除H2下的分割线；优化H1下分割线的视觉效果
+- 为列表、引用块添加缩进，同时减淡元素颜色以分层
+
+### 新功能
+
+- 添加了对Obsidian原生Callout语法的支持，使可以渲染`>[!tip]`等类型的Callout块
+- 添加了对Obsidian图片嵌入语法的支持，使可以渲染用`![Caption|Size](url)`插入的图片
+- 添加了对音频嵌入的支持，使用Hexo的自定义tag功能，语法`{% audio url %}`。不使用全局播放器以及繁杂音频标签，而是创建一个显示波形略缩图的临时播放器
