@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initAudioPlayers();
 });
 
-// Support PJAX/Swup if used in the theme
-document.addEventListener('pjax:success', () => {
-    initAudioPlayers();
-});
+// Support Swup navigation
+try {
+    swup.hooks.on("page:view", () => {
+        initAudioPlayers();
+    });
+} catch(e) {}
 
 
 function initAudioPlayers() {

@@ -57,7 +57,7 @@ hexo.extend.injector.register('head_end', () => {
 
     // Inject Client-side hydration script
     const scriptContent = `
-    document.addEventListener("DOMContentLoaded", function() {
+    function initFootnotes() {
         var footnotes = document.querySelectorAll('.footnote-ref');
         footnotes.forEach(function(el) {
             if (el.getAttribute('data-hydrated')) return;
@@ -67,32 +67,22 @@ hexo.extend.injector.register('head_end', () => {
                 // Create the tooltip element
                 var tooltip = document.createElement('span');
                 tooltip.className = 'footnote-content';
-                tooltip.innerHTML = content; // content is already HTML (from markdown render) but was attribute encoded. 
-                // Browsers automatically decode attribute values when using getAttribute, 
-                // but we need to be careful if we set innerHTML. 
-                // Actually, escapeHtml encoded < > etc. 
-                // getAttribute returns the *decoded* value? 
-                // No, getAttribute returns the value as string.
-                // If I saved "&lt;b&gt;" in data-content, getAttribute returns "&lt;b&gt;".
-                // Setting innerHTML to "&lt;b&gt;" renders <b> text, not bold tag.
-                // Wait. escapeHtml needed for the HTML string assignment to 'data-content="..."'.
-                // If I put content into data-content="<b>bold</b>", it breaks the HTML markup.
-                // So I must escape quotes.
-                // But do I escape brackets?
-                // If I escape brackets, then getAttribute returns "&lt;...".
-                // Then innerHTML renders "&lt;..." as literal text <...
-                
-                // Correction: We need to store the HTML safely in the attribute.
-                // We should ONLY escape quotes for the attribute wrapper.
-                // BUT if we don't escape <>, the HTML parser might get confused? 
-                // No, < inside quotes is valid HTML5.
-                
-                // Let's adjust escape function to only escape quotes for the attribute value.
+                tooltip.innerHTML = content;
                 
                 el.appendChild(tooltip);
                 el.setAttribute('data-hydrated', 'true');
             }
         });
+    }
+    
+    // Initialize on page load and register Swup hook
+    document.addEventListener("DOMContentLoaded", function() {
+        initFootnotes();
+        
+        // Register Swup hook after DOM is ready (swup should be available by then)
+        if (typeof swup !== 'undefined' && swup.hooks) {
+            swup.hooks.on("page:view", initFootnotes);
+        }
     });
     `;
     
