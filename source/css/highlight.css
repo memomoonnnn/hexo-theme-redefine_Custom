@@ -1,0 +1,16 @@
+/* Highlight Text Feature */
+.highlight-text {
+    background-color: #fdf5d6; /* Pale yellow */
+    border-bottom: 2px solid #f6cf4d; /* Darker yellow/gold */
+    padding: 0 4px;
+    margin: 0 2px;
+    border-radius: 0px;
+}
+
+/* Dark Mode Overrides */
+html[data-theme="dark"] .highlight-text,
+.dark-mode .highlight-text {
+    background-color: #174431; /* Darker yellow background (from theme variables) */
+    border-bottom-color: #e9a71f; /* Brighter gold for contrast in dark mode */
+    color: inherit;
+}
