@@ -1,15 +1,15 @@
 export function initMasonry() {
-  var loadingPlaceholder = document.querySelector(".loading-placeholder");
-  var masonryContainer = document.querySelector("#masonry-container");
+  const loadingPlaceholder = document.querySelector(".loading-placeholder");
+  const masonryContainer = document.querySelector("#masonry-container");
   if (!loadingPlaceholder || !masonryContainer) return;
 
   loadingPlaceholder.style.display = "block";
   masonryContainer.style.display = "none";
 
-  var images = document.querySelectorAll(
+  const images = document.querySelectorAll(
     "#masonry-container .masonry-item img",
   );
-  var loadedCount = 0;
+  let loadedCount = 0;
 
   function onImageLoad() {
     loadedCount++;
@@ -18,8 +18,8 @@ export function initMasonry() {
     }
   }
 
-  for (var i = 0; i < images.length; i++) {
-    var img = images[i];
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
     if (img.complete) {
       onImageLoad();
     } else {
@@ -35,14 +35,14 @@ export function initMasonry() {
     setTimeout(() => {
       loadingPlaceholder.style.display = "none";
       masonryContainer.style.display = "block";
-      var screenWidth = window.innerWidth;
-      var baseWidth;
+      const screenWidth = window.innerWidth;
+      let baseWidth;
       if (screenWidth >= 768) {
         baseWidth = 255;
       } else {
         baseWidth = 150;
       }
-      var masonry = new MiniMasonry({
+      const masonry = new MiniMasonry({
         baseWidth: baseWidth,
         container: masonryContainer,
         gutterX: 10,
@@ -58,7 +58,7 @@ export function initMasonry() {
 if (data.masonry) {
   try {
     swup.hooks.on("page:view", initMasonry);
-  } catch (e) {}
+  } catch { }
 
   document.addEventListener("DOMContentLoaded", initMasonry);
 }

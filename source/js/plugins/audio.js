@@ -9,7 +9,7 @@ try {
     swup.hooks.on("page:view", () => {
         initAudioPlayers();
     });
-} catch(e) {}
+} catch { }
 
 
 function initAudioPlayers() {

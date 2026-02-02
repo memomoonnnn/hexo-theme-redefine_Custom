@@ -82,4 +82,4 @@ try {
   swup.hooks.on("page:view", () => {
     main.refresh();
   });
-} catch (e) {}
+} catch { }

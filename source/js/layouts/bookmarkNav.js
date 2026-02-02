@@ -60,6 +60,6 @@ export default function initBookmarkNav() {
 
 try {
   swup.hooks.on("page:view", initBookmarkNav);
-} catch (e) {}
+} catch { }
 
 document.addEventListener("DOMContentLoaded", initBookmarkNav); 

@@ -29,12 +29,12 @@ export function initHBE() {
   }
 
   function textToArray(s) {
-    var i = s.length;
-    var n = 0;
-    var ba = new Array();
+    let i = s.length;
+    let n = 0;
+    const ba = [];
 
-    for (var j = 0; j < i; ) {
-      var c = s.codePointAt(j);
+    for (let j = 0; j < i; ) {
+      const c = s.codePointAt(j);
       if (c < 128) {
         ba[n++] = c;
         j++;
@@ -67,11 +67,11 @@ export function initHBE() {
       throw new TypeError("Expected input to be an ArrayBuffer");
     }
 
-    var view = new Uint8Array(arrayBuffer);
-    var result = "";
-    var value;
+    const view = new Uint8Array(arrayBuffer);
+    let result = "";
+    let value;
 
-    for (var i = 0; i < view.length; i++) {
+    for (let i = 0; i < view.length; i++) {
       value = view[i].toString(16);
       result += value.length === 1 ? "0" + value : value;
     }

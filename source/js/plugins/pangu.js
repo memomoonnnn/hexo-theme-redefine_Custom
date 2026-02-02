@@ -9,4 +9,4 @@ document.addEventListener("DOMContentLoaded", initPanguJS);
 
 try {
   swup.hooks.on("page:view", initPanguJS);
-} catch (e) {}
+} catch { }

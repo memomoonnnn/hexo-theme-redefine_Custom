@@ -317,7 +317,7 @@ export default function initLocalSearch() {
     swup.hooks.on("page:view", (visit) => {
       onPopupClose();
     });
-  } catch (e) {}
+  } catch (e) { }
 
   window.addEventListener("keyup", (event) => {
     if (event.key === "Escape") {

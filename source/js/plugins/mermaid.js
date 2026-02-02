@@ -3,5 +3,5 @@ if (theme.plugins.mermaid.enable === true) {
     swup.hooks.on("page:view", () => {
       mermaid.initialize();
     });
-  } catch (e) {}
+  } catch { }
 }

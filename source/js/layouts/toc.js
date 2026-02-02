@@ -90,6 +90,6 @@ try {
   swup.hooks.on("page:view", () => {
     initTOC();
   });
-} catch (e) { }
+} catch { }
 
 document.addEventListener("DOMContentLoaded", initTOC);

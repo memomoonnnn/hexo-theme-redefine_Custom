@@ -128,7 +128,7 @@ try {
     navigationState.isNavigating = true;
     document.body.classList.remove("navbar-shrink");
   });
-} catch (error) { }
+} catch { }
 
 document.addEventListener("DOMContentLoaded", () => {
   navbarShrink.init();

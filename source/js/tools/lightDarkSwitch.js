@@ -5,8 +5,8 @@ const elementCode = ".mermaid";
 const saveOriginalData = function () {
   return new Promise((resolve, reject) => {
     try {
-      var els = document.querySelectorAll(elementCode),
-        count = els.length;
+      const els = document.querySelectorAll(elementCode);
+      let count = els.length;
       els.forEach((element) => {
         element.setAttribute("data-original-code", element.innerHTML);
         count--;
@@ -23,8 +23,8 @@ const saveOriginalData = function () {
 const resetProcessed = function () {
   return new Promise((resolve, reject) => {
     try {
-      var els = document.querySelectorAll(elementCode),
-        count = els.length;
+      const els = document.querySelectorAll(elementCode);
+      let count = els.length;
       els.forEach((element) => {
         if (element.getAttribute("data-original-code") != null) {
           element.removeAttribute("data-processed");

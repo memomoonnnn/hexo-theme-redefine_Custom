@@ -22,8 +22,8 @@ function setTabs() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", setTabs);
+
 try {
   swup.hooks.on("page:view", setTabs);
-} catch (e) {}
-
-document.addEventListener("DOMContentLoaded", setTabs);
+} catch { }
