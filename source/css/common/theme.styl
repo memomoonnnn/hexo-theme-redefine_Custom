@@ -20,6 +20,7 @@ root-color(mode) {
   --invert-text-color mode == 'light' ? $invert-text-color : $dark-invert-text-color
   --border-color mode == 'light' ? $border-color : $dark-border-color
   --selection-color mode == 'light' ? $selection-color : $dark-selection-color
+  --shadow-color-0 mode == 'light' ? $shadow-color-0 : $dark-shadow-color-0
   --shadow-color-1 mode == 'light' ? $shadow-color-1 : $dark-shadow-color-1
   --shadow-color-2 mode == 'light' ? $shadow-color-2 : $dark-shadow-color-2
   --shadow-hover-color mode == 'light' ? $shadow-hover-color : $dark-shadow-hover-color
@@ -50,7 +51,9 @@ root-color(mode) {
   --redefine-box-shadow-hover : var(--shadow-color-2) 0px 6px 24px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset
   --redefine-box-shadow-flat : var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px
   --redefine-box-shadow-flat-hover : var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset
-  --redefine-deeper-shadow : 0 8px 20px rgba(0, 0, 0, 0.05)
+  --redefine-deeper-shadow : 0 8px 20px var(--shadow-color-2)
+  --redefine-deepest-shadow : var(--shadow-color-0) 0px 10px 24px -3px
+  --redefine-downward-shadow : var(--shadow-color-0) 0px 10px 15px -3px, var(--shadow-color-2) 0px 4px 6px -2px
 
   --mermaid-theme : mode == 'light' ? $mermaid-theme : $dark-mermaid-theme
 

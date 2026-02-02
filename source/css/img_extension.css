@@ -1,7 +1,7 @@
 /* 重置 figure 标签的浏览器默认样式 */
 figure.hexo-img-ext-container {
-	margin: 2rem 0;
-	/* 靠左对齐，同时重置浏览器默认的 padding */
+	margin: 2rem auto;
+	/* 居中对齐，同时重置浏览器默认的 padding */
 	padding: 0;
 }
 
@@ -16,8 +16,8 @@ figure.hexo-img-ext-container {
 /* 容器基础设置 */
 .hexo-img-ext-container {
 	display: block;
-	margin: 2rem 0;
-	/* 靠左对齐 */
+	margin: 2rem auto;
+	/* 居中对齐 */
 	max-width: 100%;
 	/* 防止在移动端溢出 */
 	border: 1px solid var(--border-color);
@@ -27,7 +27,7 @@ figure.hexo-img-ext-container {
 	overflow: hidden;
 	/* 确保内部内容不溢出圆角 */
 	box-sizing: border-box;
-	box-shadow: var(--redefine-box-shadow);
+	box-shadow: var(--redefine-deepest-shadow);
 }
 
 /* 带有描述时的卡片样式 */
@@ -39,7 +39,7 @@ figure.hexo-img-ext-container {
 	overflow: hidden;
 	/* 确保内部内容不溢出圆角 */
 	box-sizing: border-box;
-	box-shadow: var(--redefine-box-shadow);
+	box-shadow: var(--redefine-deepest-shadow);
 }
 
 /* 图片包裹层（用于微调图片位置） */

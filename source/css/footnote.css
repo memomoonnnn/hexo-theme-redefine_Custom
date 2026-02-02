@@ -37,7 +37,7 @@
     color: var(--default-text-color, #333);
     border: 1px solid var(--shadow-color-1, rgba(0,0,0,0.1));
     border-radius: 12px;
-    box-shadow: var(--redefine-deeper-shadow);
+    box-shadow: var(--redefine-downward-shadow);
     
     z-index: 999;
     font-size: 0.9rem;
