@@ -14,8 +14,12 @@ $logo-image-box-width = 34px
   align-items center
   justify-content center
   background $nav-color-bg
-  -webkit-backdrop-filter blur(10px)
-  backdrop-filter blur(10px)
+  
+  .dark &
+    background $dark-background-color-transparent
+  
+  -webkit-backdrop-filter blur(15px)
+  backdrop-filter blur(15px)
   padding-top $scroll-progress-bar-height
   hover-style(
     false,
