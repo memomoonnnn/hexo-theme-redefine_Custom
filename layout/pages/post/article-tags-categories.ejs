@@ -1,0 +1,19 @@
+<% if (page.categories && page.categories.length > 0 || page.tags && page.tags.length > 0) { %>
+<div class="article-tags-categories-container">
+    <% if (page.categories && page.categories.length > 0) { %>
+        <% page.categories.forEach((category) => { %>
+            <a class="article-category-item" href="<%= url_for(category.path) %>">
+                <i class="fa-regular fa-folder"></i>&nbsp;<%= category.name %>
+            </a>
+        <% }) %>
+    <% } %>
+
+    <% if (page.tags && page.tags.length > 0) { %>
+        <% page.tags.forEach((tag) => { %>
+            <a class="article-tag-item" href="<%= url_for(tag.path) %>">
+                <i class="fa-regular fa-hashtag"></i>&nbsp;<%= tag.name %>
+            </a>
+        <% }) %>
+    <% } %>
+</div>
+<% } %>
