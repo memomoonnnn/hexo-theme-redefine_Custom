@@ -18,7 +18,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
     }
 
     return data;
-});
+}, 5);
 
 // Inject CSS
 hexo.extend.injector.register('head_end', () => {
