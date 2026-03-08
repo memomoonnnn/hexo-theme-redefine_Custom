@@ -1,24 +1,11 @@
-/**
- * scripts/obsidian-callout.js
- * 功能 1: 解析 Markdown 中的 Obsidian Callout 语法
- * 功能 2: 读取同目录下的 callout.css 并注入到页面头部
- */
-
 const fs = require('fs');
 const path = require('path');
-
-console.log('>>> 正在加载 Callout 脚本... <<<'); // 【测试点 1】
 
 // --- 功能 1: 注册 Markdown 解析过滤器 ---
 
 hexo.extend.filter.register('before_post_render', function (data) {
 	// 正则表达式匹配 Callout 块
 	const calloutRegex = /^> ?\[!([a-zA-Z]+)\]([-+]?)(.*)\n((?:> ?.*\n?)*)/gm;
-
-	// 检查是否有匹配
-	if (calloutRegex.test(data.content)) {
-		console.log('>>> 发现 Callout 语法，正在处理文章: ' + data.title); // 【测试点 2】
-	}
 
 	data.content = data.content.replace(calloutRegex, function (match, type, collapse, title, content) {
 
