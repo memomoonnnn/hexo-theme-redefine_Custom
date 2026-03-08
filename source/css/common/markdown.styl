@@ -1,162 +1,266 @@
+// =====================================================================
+// markdown.styl - Markdown 正文区域全局样式
+// 作用范围：所有带 .markdown-body 类的元素及其子元素
+// 变量来源：common/variables.styl
+// =====================================================================
+
+// ─────────────────────────────────────────────
+// 【根容器】.markdown-body
+// 控制 Markdown 渲染区域的整体字体族与默认字号
+// ─────────────────────────────────────────────
 .markdown-body
-  /* [变量使用]: $english-font-family 等变量在 common/variables.styl 中定义 */
+
   font-family $english-font-family, $chinese-font-family, sans-serif
   font-size $default-article-font-size
 
+  // ─────────────────────────────────────────────
+  // 【引用块】blockquote
+  // 控制 Markdown `>` 语法生成的引用块
+  // - 左侧带彩色边框，背景色与正文区分
+  // - 内部的段落、列表添加额外内边距
+  // ─────────────────────────────────────────────
   /* [嵌套选择器]: 这里的 blockquote 等同于 .markdown-body blockquote */
   blockquote
     /* [多重嵌套]: 等同于 .markdown-body blockquote p, .markdown-body blockquote ul ... */
     p, ul, ol
-      padding 5px 5px 5px 10px
+      padding 5px 5px 5px 10px   // 引用块内段落和列表的内边距
+      color var(--third-text-color)  // 引用块内文字颜色（覆盖外部 p 规则）
 
     box-sizing border-box
-    margin 2em 3em
-    color var(--default-text-color) /* [标准 CSS 变量]: 使用 var() 调用全局 CSS 变量 */
-    font-style italic
-    background var(--third-background-color)
-    padding 0 1rem 0 0.5rem
-    border-radius 0
+    margin 2em 3em               // 引用块外部上下左右留白 
+    // font-style italic            // 引用块文字默认斜体
+    background var(--third-background-color) // 引用块背景色（比正文略深）
+    padding 0 1rem 0 0.5rem      // 引用块内边距
+    border-radius 0              // 不圆角
     position relative
-    border-left 5px solid var(--border-color)
+    border-left 5px solid var(--border-color) // 左侧竖线标记
 
+  // ─────────────────────────────────────────────
+  // 【段落】p
+  // 控制 Markdown 正文段落的行高、颜色、间距与对齐
+  // ─────────────────────────────────────────────
   p
     line-height $default-line-height
     color var(--default-text-color)
     font-weight normal
-    margin-bottom 1.5rem
-    margin-top 1.5rem
-    text-align justify
+    margin-bottom 1.5rem         // 段落间距（下）
+    margin-top 1.5rem            // 段落间距（上）
+    text-align justify           // 两端对齐
 
+  // ─────────────────────────────────────────────
+  // 【超链接】a
+  // 控制正文中所有超链接的外观与交互效果
+  // - 下划线偏移与颜色渐变过渡
+  // - .link 子类：带图标链接添加右侧间距
+  // - .fas/.far/.fab：FontAwesome 图标微调
+  // - .link-icon：链接右上角箭头图标的位移动画
+  // - :hover / :focus：悬停/聚焦时下划线变红
+  // ─────────────────────────────────────────────
   a
     position relative
     outline 0
     text-decoration underline
-    overflow-wrap break-word
+    overflow-wrap break-word     // 超长 URL 自动换行
     cursor pointer
     box-sizing border-box
     padding-bottom 2px
-    text-underline-offset 2px
-    text-decoration-color rgb(196, 160, 160)
+    text-underline-offset 2px    // 下划线与文字的间距
+    text-decoration-color rgb(196, 160, 160) // 默认下划线颜色（淡粉）
     transition: text-decoration-color 0.2s ease
 
     /* [父级引用]: & 代表 a，所以 &.link 等同于 a.link */
+    // 【带图标的外部链接】a.link
+    // 右侧留出空间给图标
     &.link
       padding-right 0.1em
 
+    // 【FontAwesome 图标】a 内的 .fas / .far / .fab
+    // 统一图标颜色、大小与左右间距
     .fas, .far, fab
       margin 0 2px 0 6px
       position relative
       color var(--third-text-color)
       font-size 0.88rem
 
+    // 【链接箭头图标】.link-icon
+    // 悬停时向右上角位移，增强外链视觉反馈
     .link-icon
       transition transform 0.2s ease
 
     /* [伪类嵌套]: & 代表 a，等同于 a:hover, a:focus */
+    // 【悬停/聚焦状态】a:hover, a:focus
+    // 下划线变为醒目红色
     &:hover,
     &:focus
       text-decoration underline !important
       text-decoration-color rgb(246, 59, 59)!important 
 
+      // 悬停时箭头图标向右上方位移
       .link-icon
         transform translate(0.1em, -0.1em)
 
       /* [伪元素嵌套]: 等同于 a:hover::after 等 */
+      // 悬停时 ::after 伪元素背景变红（用于自定义下划线动画等场景）
       &::after
         background #f63b3b
         text-decoration underline
 
+  // ─────────────────────────────────────────────
+  // 【加粗】strong
+  // 控制 Markdown `**text**` 加粗文字的颜色和字重
+  // ─────────────────────────────────────────────
   strong
     color var(--default-text-color)
     font-weight 600
 
+  // ─────────────────────────────────────────────
+  // 【分割线】hr
+  // 控制 Markdown `---` 生成的水平分割线
+  // ─────────────────────────────────────────────
   hr
     margin 2rem 0
     border 0
     border-top 2px solid var(--shadow-color-1)
 
+  // ─────────────────────────────────────────────
+  // 【斜体基础样式】em（.markdown-body em）
+  // 控制 Markdown `*text*` 斜体的公共基础样式
+  // - 使用背景渐变线模拟"针脚"纹理底纹
+  // - 亮/暗色具体颜色在下方的 .light / .dark 中分别定义
+  // ─────────────────────────────────────────────
   em
     font-style italic
     text-decoration none !important
     padding-bottom 1px
-    background-repeat repeat-x
-    background-position 0 100%
-    background-size 6px 3px
+    background-repeat repeat-x          // 针脚纹理横向重复
+    background-position 0 100%          // 底部对齐
+    background-size 6px 3px             // 单个针脚图案的宽高
     transition color 0.2s ease, -webkit-text-stroke 0.2s ease, background-image 0.2s ease
-    -webkit-box-decoration-break clone
+    -webkit-box-decoration-break clone  // 多行斜体时每行独立渲染背景
     box-decoration-break clone
 
+// ─────────────────────────────────────────────────────────────────────
+// 【亮色模式斜体】.light .markdown-body em
+// 亮色主题下斜体文字的配色与悬停动画
+// - 默认：主题色半透明针脚底纹
+// - 悬停：针脚纹理实色 + 文字描边 + 流动动画
+// ─────────────────────────────────────────────────────────────────────
 // Light mode italic (outside .markdown-body nesting, using full selectors)
 .light .markdown-body em
   color var(--primary-color)
   background-image unquote("linear-gradient(-45deg, transparent 35%, color-mix(in srgb, var(--primary-color), transparent 60%) 35%, color-mix(in srgb, var(--primary-color), transparent 60%) 65%, transparent 65%)")
 
+  // 【亮色模式斜体悬停】.light .markdown-body em:hover
+  // 悬停时针脚变实色，并附加描边与流动动画
   &:hover
     color var(--primary-color)
     background-image linear-gradient(-45deg, transparent 35%, var(--primary-color) 35%, var(--primary-color) 65%, transparent 65%)
     font-weight normal
     -webkit-text-stroke 0.6px var(--primary-color)
-    animation stitchFlow 0.5s linear infinite
+    animation stitchFlow 0.5s linear infinite   // 触发针脚流动动画
 
+// ─────────────────────────────────────────────────────────────────────
+// 【暗色模式斜体】.dark .markdown-body em
+// 暗色主题下斜体文字的配色与悬停动画
+// - 默认：主题色混入白色的半透明针脚底纹
+// - 悬停：针脚变实色 + 发光阴影 + 流动动画
+// ─────────────────────────────────────────────────────────────────────
 // Dark mode italic
 .dark .markdown-body em
   color unquote("color-mix(in srgb, var(--primary-color), white 30%)")
   background-image unquote("linear-gradient(-45deg, transparent 35%, color-mix(in srgb, var(--primary-color), white 20%) 35%, color-mix(in srgb, var(--primary-color), white 20%) 65%, transparent 65%)")
 
+  // 【暗色模式斜体悬停】.dark .markdown-body em:hover
+  // 悬停时针脚变实色，并附加描边、发光与流动动画
   &:hover
     color var(--primary-color)
     background-image linear-gradient(-45deg, transparent 35%, var(--primary-color) 35%, var(--primary-color) 65%, transparent 65%)
     font-weight normal
     -webkit-text-stroke 0.5px var(--primary-color)
-    text-shadow 0 0 10px var(--primary-color)
+    text-shadow 0 0 10px var(--primary-color)   // 暗色模式下额外的发光效果
     animation stitchFlow 0.5s linear infinite
 
+// ─────────────────────────────────────────────────────────────────────
+// 【针脚流动动画】@keyframes stitchFlow
+// 斜体悬停时，背景底纹横向连续移动，模拟针脚缝线流动感
+// ─────────────────────────────────────────────────────────────────────
 @keyframes stitchFlow
   from
-    background-position-x 0
+    background-position-x 0     // 动画起始位置
   to
-    background-position-x 6px
+    background-position-x 6px   // 移动一个针脚单元宽度后循环（seamless loop）
 
 .markdown-body
+  // ─────────────────────────────────────────────
+  // 【列表项通用】ul > li, ol > li
+  // 控制所有列表项（有序/无序）的文字颜色、缩进与行高
+  // li::marker 控制列表符号（序号/点）的颜色
+  // ─────────────────────────────────────────────
   ul > li, ol > li
     color var(--second-text-color)
-    margin-left 3em
+    margin-left 3em              // 列表整体向右缩进
     line-height $default-line-height
     &::marker
-      color var(--border-color)
+      color var(--border-color)  // 列表符号颜色（项目点/序号）
 
+  // ─────────────────────────────────────────────
+  // 【无序列表】ul
+  // 控制 Markdown `-` / `*` 生成的无序列表
+  // 支持三级嵌套，每级使用不同符号：
+  //   第一级：实心圆点 (disc)
+  //   第二级：空心圆圈 (circle)
+  //   第三级：实心方块 (square)
+  // ─────────────────────────────────────────────
   ul
-    margin-bottom 1.5rem
+    margin-bottom 1.5rem         // 列表与下方内容的间距
     li
-      list-style disc
+      list-style disc            // 一级：实心圆点
       ul
         li
-          list-style circle
+          list-style circle      // 二级：空心圆圈
           ul
             li
-              list-style square
+              list-style square  // 三级：实心方块
 
+  // ─────────────────────────────────────────────
+  // 【有序列表】ol
+  // 控制 Markdown `1.` 生成的有序列表
+  // 支持多级嵌套，每级使用不同标记：
+  //   第一级：数字 (decimal)
+  //   第一级内嵌无序：圆点 → 圆圈
+  //   第二级有序：大写字母 (upper-alpha)
+  //   第三级有序：大写罗马数字 (upper-roman)
+  // ─────────────────────────────────────────────
   ol
     margin-bottom 1.5rem
     li
-      list-style decimal
+      list-style decimal         // 一级：1. 2. 3.
       ul
         li
-          list-style disc
+          list-style disc        // 一级内嵌无序：实心圆点
         ul
           li
-            list-style circle
+            list-style circle    // 一级内嵌无序二层：空心圆圈
       ol
         li
-          list-style upper-alpha
+          list-style upper-alpha // 二级有序：A. B. C.
           ol
             li
-              list-style upper-roman
+              list-style upper-roman // 三级有序：I. II. III.
 
+  // ─────────────────────────────────────────────
+  // 【列表项文字颜色兜底】li
+  // 覆盖默认颜色，保证所有层级列表项颜色一致
+  // ─────────────────────────────────────────────
   li
     color var(--default-text-color)
 
   /* 标题群组样式 */
+  // ─────────────────────────────────────────────
+  // 【所有标题公共样式】h1 ~ h6 及其 class 等价版本
+  // 控制所有级别标题的字体族、颜色与行高
+  // 平板设备下行高略微缩小（通过 mixin 生成媒体查询）
+  // ─────────────────────────────────────────────
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     font-family $english-font-family, $chinese-font-family, sans-serif
     color var(--second-text-color)
@@ -167,20 +271,27 @@
       line-height: $default-line-height * 0.96
 
   /* 各级标题具体设置 */
+  // ─────────────────────────────────────────────
+  // 【一级标题】h1 / .h1
+  // 最大字号，超粗字重，底部带粗边框横线
+  // ─────────────────────────────────────────────
   h1, .h1
     font-size 2.8rem
     font-weight 900
     padding-bottom 1rem /* padding-bottom 控制文字与下边框的间距 */
-    border-bottom solid 5px var(--fourth-text-color)
+    border-bottom solid 5px var(--fourth-text-color) // h1 下方装饰横线
     margin-top $h1-heading-margin-top /* [变量使用]: 从配置读取的上边距 */
     margin-bottom 1rem
-    letter-spacing -0.025em
+    letter-spacing -0.025em          // 稍微压缩字距，大字号更美观
     line-height 1.2
 
     +redefine-tablet()
       font-size 1.7rem
       line-height 1.2
 
+  // ─────────────────────────────────────────────
+  // 【二级标题】h2 / .h2
+  // ─────────────────────────────────────────────
   h2, .h2
     font-size 2rem
     font-weight 700
@@ -195,6 +306,9 @@
       font-size 1.6rem
       line-height 1.1
 
+  // ─────────────────────────────────────────────
+  // 【三级标题】h3 / .h3
+  // ─────────────────────────────────────────────
   h3, .h3
     font-size 1.6rem
     font-weight 600
@@ -207,6 +321,9 @@
       font-size 1.5rem
       line-height 1.2
 
+  // ─────────────────────────────────────────────
+  // 【四级标题】h4 / .h4
+  // ─────────────────────────────────────────────
   h4, .h4
     font-size 1.38rem
     font-weight 600
@@ -218,6 +335,9 @@
       font-size 1.4rem
       line-height 1.3
 
+  // ─────────────────────────────────────────────
+  // 【五级标题】h5 / .h5
+  // ─────────────────────────────────────────────
   h5, .h5
     font-size 1.2rem
     font-weight 600
@@ -229,6 +349,10 @@
       font-size 1.18rem
       line-height 1.2
 
+  // ─────────────────────────────────────────────
+  // 【六级标题】h6 / .h6
+  // 最小标题，字号接近正文
+  // ─────────────────────────────────────────────
   h6, .h6
     font-size 1.1rem
     font-weight 600
@@ -255,23 +379,41 @@
   //   else
   //     margin 1rem 0 1rem
 
+  // ─────────────────────────────────────────────
+  // 【遮罩删除线 / Spoiler 效果】del.mask
+  // 控制带 .mask 类的 <del> 元素（即 ~~文字~~ 语法 + 自定义类）
+  // - 默认状态：文字与背景均变为纯黑，内部所有元素透明度为 0，
+  //   形成"涂黑遮盖"效果（类似漫画中的敏感内容遮挡）
+  // - 悬停时：颜色与透明度通过过渡动画恢复，内容显现
+  // ─────────────────────────────────────────────
   /* 删除线遮罩效果 (Spoiler 效果) */
   del.mask
-    text-decoration none !important
+    text-decoration none !important    // 去除默认删除线
     transition .2s cubic-bezier(.25, .46, .45, .94) color, .2s cubic-bezier(.25, .46, .45, .94) background
 
+    // del.mask 内所有子元素的过渡（opacity 渐变）
     * 
       transition .35s cubic-bezier(.25, .46, .45, .94) opacity
 
     /* 悬停显示隐藏内容 */
+    // 【非悬停状态】del.mask:not(:hover)
+    // 文字透明，背景黑色，子元素完全隐藏
     &:not(:hover)
-      color transparent !important
-      background #000 !important
+      color transparent !important     // 文字不可见
+      background #000 !important       // 黑色遮罩背景
       * 
-        opacity 0 !important
+        opacity 0 !important           // 内部所有子元素隐藏
       &, *
-        border none !important
+        border none !important         // 去除内部可能有的边框（如链接下划线）
 
+  // ─────────────────────────────────────────────
+  // 【表格容器】> table, .tab-pane > table
+  // 控制 Markdown 表格的整体布局、阴影与圆角
+  // - thead > th：表头单元格，带底部分割线与背景色，首尾单元格圆角
+  // - tbody 最后一行首尾 td：底部圆角保持与容器一致
+  // - td, th：单元格内边距与左侧分割线（首列无左线）
+  // - tr：行背景色，偶数行隔行变色（斑马纹）
+  // ─────────────────────────────────────────────
   /* 表格样式 */
   & > table,
   .tab-pane > table
@@ -281,79 +423,109 @@
     overflow auto
     margin-bottom 2em
     margin-top 2em
-    box-shadow var(--redefine-box-shadow-flat)
-    border-radius $redefine-border-radius-medium
+    box-shadow var(--redefine-box-shadow-flat)   // 表格整体投影
+    border-radius $redefine-border-radius-medium // 表格四角圆角
 
+    // 【表头】thead > th
+    // 底部细线分隔表头与内容区，背景色略深
     thead
       th
         border-bottom 1px solid var(--shadow-color-1)
         background-color var(--third-background-color) !important
+        // 表头第一个单元格：左上角圆角
         &:first-child
           border-top-left-radius $redefine-border-radius-medium
+        // 表头最后一个单元格：右上角圆角
         &:last-child
           border-top-right-radius $redefine-border-radius-medium
 
+    // 【表格主体最后一行】tbody > tr:last-child > td
+    // 保持表格底部圆角，与容器圆角对齐
     tbody
       tr
         &:last-child
           td
             &:first-child
-              border-bottom-left-radius $redefine-border-radius-medium
+              border-bottom-left-radius $redefine-border-radius-medium  // 左下角
             &:last-child
-              border-bottom-right-radius $redefine-border-radius-medium
+              border-bottom-right-radius $redefine-border-radius-medium // 右下角
 
+    // 【单元格通用】td, th
+    // 内边距与左侧竖线分隔（第一列无左竖线，避免重复边框）
     td, th
       padding 8px 16px
       border-left 1px solid var(--shadow-color-1)
       &:first-child
         border-left none
 
+    // 【表格行背景色】tr
+    // 默认背景色
     tr
       background-color var(--background-color)
 
     /* 隔行变色 (Striped Table) */
+    // 【偶数行】tr:nth-child(2n)
+    // 斑马纹效果，偶数行使用略深背景色
     tr:nth-child(2n)
       background-color var(--second-background-color)
 
+  // ─────────────────────────────────────────────
+  // 【内联数学公式容器】mjx-container（行内，非块级）
+  // 控制 MathJax 渲染的行内公式（如 $E=mc^2$）
+  // - 溢出内容横向滚动，避免撑破布局
+  // - 自定义滚动条：滚动条轨道透明，滑块悬停时才显示
+  // ─────────────────────────────────────────────
   /* 数学公式容器 (MathJax) */
   mjx-container
-    display inline
-    overflow-x auto
-    white-space nowrap
-    margin 0 0.2rem
+    display inline                     // 行内显示，与文字同行
+    overflow-x auto                    // 公式过宽时横向滚动
+    white-space nowrap                 // 禁止公式内换行
+    margin 0 0.2rem                    // 与周围文字的左右间距
 
     /* 滚动条自定义样式的 Stylus 嵌套简化写法 */
+    // 悬停时滚动条滑块显现（半透明边框）
     &:hover::-webkit-scrollbar-thumb
       border 3px solid rgba(183, 183, 183, 0.3)
 
+    // 滚动条轨道尺寸
     &::-webkit-scrollbar
       width 6px
       height 6px
       transition all 0.2s ease
       display block
 
+    // 滚动条轨道背景（透明）
     &::-webkit-scrollbar-track
       background transparent
       border none
 
+    // 滚动条滑块（默认完全透明，悬停后由上面规则显现）
     &::-webkit-scrollbar-thumb
       border-radius 20px
-      border 3px solid rgba(183, 183, 183, 0)
+      border 3px solid rgba(183, 183, 183, 0)   // 透明边框，悬停时变为半透明
       transition all 0.2s ease
 
+    // MathJax SVG 元素（行内）
     svg
       display inline-block
 
+  // ─────────────────────────────────────────────
+  // 【块级数学公式容器】mjx-container[display="true"]
+  // 控制 MathJax 渲染的独立块级公式（如 $$E=mc^2$$）
+  // - 居中显示，底部留白（为细滚动条预留空间）
+  // - 滚动条样式同行内公式
+  // ─────────────────────────────────────────────
   mjx-container[display="true"]
-    display block
+    display block                      // 块级，单独占一行
     justify-content center
     vertical-align baseline
-    overflow-x auto
-    text-align center
+    overflow-x auto                    // 公式过宽时横向滚动
+    text-align center                  // 公式居中
     white-space nowrap
-    scrollbar-width: thin
-    padding-bottom 8px
+    scrollbar-width: thin              // Firefox 细滚动条
+    padding-bottom 8px                 // 为滚动条预留底部空间
 
+    // 悬停时滑块显现
     &:hover::-webkit-scrollbar-thumb
       border 3px solid rgba(183, 183, 183, 0.3)
 
@@ -372,6 +544,6 @@
       border 3px solid rgba(183, 183, 183, 0)
       transition all 0.2s ease
 
+    // MathJax SVG 元素（块级）
     svg
       display inline-block
-
