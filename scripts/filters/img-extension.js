@@ -29,7 +29,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
 		// 结构构建
 		if (desc) {
 			// 场景 A: 有描述 -> 灰色边框 + 灰色背景描述区 + 斜体
-			return `<figure class="hexo-img-ext-container with-caption" style="width: ${widthPx}px;"><div class="img-wrapper">${imgTag}</div><figcaption class="img-caption"><em>${desc}</em></figcaption></figure>`;
+			return `<figure class="hexo-img-ext-container with-caption" style="width: ${widthPx}px;"><div class="img-wrapper">${imgTag}</div><figcaption class="img-caption"><span class="img-caption-italic">${desc}</span></figcaption></figure>`;
 		} else {
 			// 场景 B: 无描述 -> 仅圆角图片 + 宽度控制
 			return `<div class="hexo-img-ext-container" style="width: ${widthPx}px;">${imgTag}</div>`;
