@@ -36,8 +36,8 @@
   background-size: 100% 100%;
   background-image: linear-gradient(
     to top,
-    color-mix(in srgb, var(--primary-color), transparent 40%),
-    color-mix(in srgb, var(--primary-color), transparent 80%)
+    color-mix(in srgb, var(--primary-color), transparent 50%),
+    color-mix(in srgb, var(--primary-color), transparent 90%)
   );
 }
 
