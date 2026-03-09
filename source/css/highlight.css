@@ -7,9 +7,9 @@
 .highlight-text {
   padding: 0 2px;
   margin: 0;
-  border-radius: 4px;
-  font-weight: inherit;
-  color: inherit;
+  /* border-radius: 4px; */
+  font-weight: 600;
+  color: var(--first-text-color);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-color: transparent !important;
@@ -29,7 +29,7 @@
     transparent
   );
   background-size: 100% 40%;
-  color: var(--default-text-color);
+  /* color: var(--default-text-color); */
 }
 
 .light .highlight-text:hover {

@@ -37,7 +37,15 @@ hexo.extend.filter.register('before_post_render', function (data) {
 		const iconClass = iconMap[calloutType] || 'fa-solid fa-pencil';
 
 		// 内容清洗与渲染
-		const cleanContent = content.replace(/^> ?/gm, '');
+		let cleanContent = content.replace(/^> ?/gm, '');
+
+		// 修复 CJK 标点紧贴 emphasis marker 导致加粗/斜体失效的问题
+		// （callout 内容使用 hexo.render.renderSync 渲染，不经过 before_post_render 过滤器）
+		const cjkPunct = '[\\u3000-\\u303F\\uFF00-\\uFFEF\\u2018-\\u201F\\uFE10-\\uFE6F]';
+		const reAfter = new RegExp('(\\*{1,3})(' + cjkPunct + ')', 'gu');
+		const reBefore = new RegExp('(' + cjkPunct + ')(\\*{1,3})', 'gu');
+		cleanContent = cleanContent.replace(reAfter, '$1\u200B$2').replace(reBefore, '$1\u200B$2');
+
 		const renderedContent = hexo.render.renderSync({
 			text: cleanContent,
 			engine: 'markdown',

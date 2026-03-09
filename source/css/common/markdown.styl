@@ -110,7 +110,7 @@
   // 控制 Markdown `**text**` 加粗文字的颜色和字重
   // ─────────────────────────────────────────────
   strong
-    color var(--default-text-color)
+    color var(--primary-color)
     font-weight 600
 
   // ─────────────────────────────────────────────
@@ -131,6 +131,7 @@
   em
     font-style italic
     text-decoration none !important
+    padding-right 0.15em                  // 斜体右侧间距，避免与后续正常文本碰撞
     padding-bottom 1px
     background-repeat repeat-x          // 针脚纹理横向重复
     background-position 0 100%          // 底部对齐
@@ -142,42 +143,42 @@
 // ─────────────────────────────────────────────────────────────────────
 // 【亮色模式斜体】.light .markdown-body em
 // 亮色主题下斜体文字的配色与悬停动画
-// - 默认：主题色半透明针脚底纹
-// - 悬停：针脚纹理实色 + 文字描边 + 流动动画
+// - 默认：灰色针脚底纹
+// - 悬停：主题色针脚纹理实色 + 文字描边 + 流动动画
 // ─────────────────────────────────────────────────────────────────────
 // Light mode italic (outside .markdown-body nesting, using full selectors)
 .light .markdown-body em
-  color var(--primary-color)
-  background-image unquote("linear-gradient(-45deg, transparent 35%, color-mix(in srgb, var(--primary-color), transparent 60%) 35%, color-mix(in srgb, var(--primary-color), transparent 60%) 65%, transparent 65%)")
+  color var(--third-text-color)
+  background-image unquote("linear-gradient(-45deg, transparent 35%, color-mix(in srgb, var(--third-text-color), transparent 60%) 35%, color-mix(in srgb, var(--third-text-color), transparent 60%) 65%, transparent 65%)")
 
   // 【亮色模式斜体悬停】.light .markdown-body em:hover
-  // 悬停时针脚变实色，并附加描边与流动动画
+  // 悬停时针脚变主题色实色，并附加描边与流动动画
   &:hover
     color var(--primary-color)
     background-image linear-gradient(-45deg, transparent 35%, var(--primary-color) 35%, var(--primary-color) 65%, transparent 65%)
     font-weight normal
-    -webkit-text-stroke 0.6px var(--primary-color)
+    // -webkit-text-stroke 0.6px var(--primary-color)
     animation stitchFlow 0.5s linear infinite   // 触发针脚流动动画
 
 // ─────────────────────────────────────────────────────────────────────
 // 【暗色模式斜体】.dark .markdown-body em
 // 暗色主题下斜体文字的配色与悬停动画
-// - 默认：主题色混入白色的半透明针脚底纹
-// - 悬停：针脚变实色 + 发光阴影 + 流动动画
+// - 默认：灰色针脚底纹
+// - 悬停：主题色针脚变实色 + 发光阴影 + 流动动画
 // ─────────────────────────────────────────────────────────────────────
 // Dark mode italic
 .dark .markdown-body em
-  color unquote("color-mix(in srgb, var(--primary-color), white 30%)")
-  background-image unquote("linear-gradient(-45deg, transparent 35%, color-mix(in srgb, var(--primary-color), white 20%) 35%, color-mix(in srgb, var(--primary-color), white 20%) 65%, transparent 65%)")
+  color var(--third-text-color)
+  background-image unquote("linear-gradient(-45deg, transparent 35%, color-mix(in srgb, var(--third-text-color), transparent 60%) 35%, color-mix(in srgb, var(--third-text-color), transparent 60%) 65%, transparent 65%)")
 
   // 【暗色模式斜体悬停】.dark .markdown-body em:hover
-  // 悬停时针脚变实色，并附加描边、发光与流动动画
+  // 悬停时针脚变主题色实色，并附加描边、发光与流动动画
   &:hover
     color var(--primary-color)
     background-image linear-gradient(-45deg, transparent 35%, var(--primary-color) 35%, var(--primary-color) 65%, transparent 65%)
     font-weight normal
-    -webkit-text-stroke 0.5px var(--primary-color)
-    text-shadow 0 0 10px var(--primary-color)   // 暗色模式下额外的发光效果
+    // -webkit-text-stroke 0.5px var(--primary-color)
+    // text-shadow 0 0 10px var(--primary-color)   // 暗色模式下额外的发光效果
     animation stitchFlow 0.5s linear infinite
 
 // ─────────────────────────────────────────────────────────────────────
@@ -197,7 +198,7 @@
   // li::marker 控制列表符号（序号/点）的颜色
   // ─────────────────────────────────────────────
   ul > li, ol > li
-    color var(--second-text-color)
+    color var(--default-text-color)
     margin-left 3em              // 列表整体向右缩进
     line-height $default-line-height
     &::marker
@@ -207,9 +208,6 @@
   // 【无序列表】ul
   // 控制 Markdown `-` / `*` 生成的无序列表
   // 支持三级嵌套，每级使用不同符号：
-  //   第一级：实心圆点 (disc)
-  //   第二级：空心圆圈 (circle)
-  //   第三级：实心方块 (square)
   // ─────────────────────────────────────────────
   ul
     margin-bottom 1.5rem         // 列表与下方内容的间距
@@ -217,10 +215,10 @@
       list-style disc            // 一级：实心圆点
       ul
         li
-          list-style circle      // 二级：空心圆圈
+          list-style square      // 二级：实心方块
           ul
             li
-              list-style square  // 三级：实心方块
+              list-style circle  // 三级：空心圆圈
 
   // ─────────────────────────────────────────────
   // 【有序列表】ol
@@ -547,3 +545,11 @@
     // MathJax SVG 元素（块级）
     svg
       display inline-block
+
+// ─────────────────────────────────────────────────────────────────────
+// 【标点挤压】.punct-trim-start
+// 由 punctTrim.js 动态添加，当元素首字符为全角开括号时生效
+// text-indent 仅作用于首行，不影响后续行
+// ─────────────────────────────────────────────────────────────────────
+.punct-trim-start
+  text-indent -0.5em

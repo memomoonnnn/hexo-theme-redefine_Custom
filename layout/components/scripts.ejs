@@ -52,6 +52,8 @@
     <%- renderJS([ 'libs/pangu.min.js', 'plugins/pangu.js' ]) %>
 <% } %>
 
+<%- renderJS('plugins/punctTrim.js') %>
+
 <% if (theme.bookmarks && theme.bookmarks.length !== 0) { %>
     <%- renderJS('layouts/bookmarkNav.js', { module: true }) %>
 <% } %>
