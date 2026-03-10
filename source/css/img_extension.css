@@ -71,5 +71,4 @@ figure.hexo-img-ext-container {
 /* 描述文字：使用独立的类名，避免被正文 markdown-body 里的 em 样式污染 */
 .img-caption .img-caption-italic {
 	font-style: normal;
-	/* 颜色默认继承 .img-caption 的 var(--third-text-color) */
 }
