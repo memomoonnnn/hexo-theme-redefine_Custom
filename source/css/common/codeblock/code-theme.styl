@@ -43,6 +43,8 @@ $dark-inline-code-foreground = #c9d1d9
 $dark-inline-code-background = #313131
 
 code-theme(mode)
+  --highlight-gutter-color: mode == 'light' ? $highlight-gutter-color : $dark-highlight-gutter-color
+  --highlight-gutter-bg-color: mode == 'light' ? $highlight-gutter-bg-color : $dark-highlight-gutter-bg-color
   --inline-code-foreground: mode == 'light' ? $inline-code-foreground : $dark-inline-code-foreground
   --inline-code-background: mode == 'light' ? $inline-code-background : $dark-inline-code-background
   --highlight-background: mode == 'light' ? $highlight-background : $dark-highlight-background

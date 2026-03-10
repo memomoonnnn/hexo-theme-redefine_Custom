@@ -13,9 +13,9 @@ $code-block
 pre, code
   line-height 1.5 !important
   if (hexo-config('articles.code_block.font.enable') && hexo-config('articles.code_block.font.family'))
-    font-family hexo-config('articles.code_block.font.family'), 'Geist Mono', Courier, monospace !important
+    font-family hexo-config('articles.code_block.font.family'), 'Maple Mono', Courier, monospace !important
   else
-    font-family 'Geist Mono', Courier, monospace !important
+    font-family 'Maple Mono', Courier, monospace !important
 
 pre.mermaid
   background-color var(--background-color)
@@ -28,7 +28,7 @@ code
   padding 3px 4px
   margin 0 0.4em
   vertical-align 0.1em
-  border 1px solid var(--border-color)
+  border 1px solid var(--border-color-light)
   box-shadow var(--shadow-color-0) 1px 1px 0px 0px
   word-wrap break-word
   border-radius 7px
@@ -67,7 +67,7 @@ pre
 .highlight
   @extend $code-block
   border-radius $redefine-border-radius-large-bottom
-  padding-bottom 5px
+  // padding-bottom 5px
   overflow auto
   margin 0 !important
 
@@ -124,7 +124,7 @@ pre
     padding-left 10px
     padding-right 10px
     color var(--highlight-gutter-color)
-    text-align center
+    text-align right
     background-color var(--highlight-gutter-bg-color)
 
   .code pre
