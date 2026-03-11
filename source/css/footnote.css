@@ -15,7 +15,7 @@
     /* Visual (The Red Dot) */
     width: 8px;
     height: 8px;
-    background-color: #ff6b6b; /* Pale red */
+    background-color: #ff6b6b;
     border-radius: 50%;
     margin-left: 2px;
 }

@@ -57,16 +57,19 @@
   // - :hover / :focus：悬停/聚焦时下划线变红
   // ─────────────────────────────────────────────
   a
+    font-weight 600
     position relative
+    margin-left 0.2em
     outline 0
     text-decoration underline
     overflow-wrap break-word     // 超长 URL 自动换行
     cursor pointer
     box-sizing border-box
     padding-bottom 2px
+    color var(--hyperlink-color)
     text-underline-offset 2px    // 下划线与文字的间距
-    text-decoration-color rgb(196, 160, 160) // 默认下划线颜色（淡粉）
-    transition: text-decoration-color 0.2s ease
+    text-decoration-color var(--hyperlink-color) // 默认下划线颜色（淡粉）
+    transition: text-decoration-color 0.2s ease, color 0.2s ease
 
     /* [父级引用]: & 代表 a，所以 &.link 等同于 a.link */
     // 【带图标的外部链接】a.link
@@ -74,35 +77,38 @@
     &.link
       padding-right 0.1em
 
-    // 【FontAwesome 图标】a 内的 .fas / .far / .fab
+    // 【FontAwesome 图标】a 内的 .fas / .far / .fab 等
     // 统一图标颜色、大小与左右间距
-    .fas, .far, fab
-      margin 0 2px 0 6px
+    .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands
+      margin 0 0.1em 0 0.3em   // 这里的 4px 控制图标与前面链接文字的距离，右边的 0 控制图标与后续文本的距离
       position relative
-      color var(--third-text-color)
-      font-size 0.88rem
+      color var(--hyperlink-color)
+      font-size 0.65rem
 
     // 【链接箭头图标】.link-icon
-    // 悬停时向右上角位移，增强外链视觉反馈
+    // 悬停时动画与颜色过渡，增强外链视觉反馈
     .link-icon
-      transition transform 0.2s ease
+      transition transform 0.2s ease, color 0.2s ease
+      color var(--hyperlink-color)
 
     /* [伪类嵌套]: & 代表 a，等同于 a:hover, a:focus */
     // 【悬停/聚焦状态】a:hover, a:focus
     // 下划线变为醒目红色
     &:hover,
     &:focus
+      color var(--hyperlink-color-hover) !important
       text-decoration underline !important
-      text-decoration-color rgb(246, 59, 59)!important 
+      text-decoration-color var(--hyperlink-color-hover)!important 
 
-      // 悬停时箭头图标向右上方位移
+      // 悬停时箭头图标放大旋转并变色
       .link-icon
-        transform translate(0.1em, -0.1em)
+        transform scale(1.1) rotate(15deg)
+        color var(--hyperlink-color-hover)
 
       /* [伪元素嵌套]: 等同于 a:hover::after 等 */
       // 悬停时 ::after 伪元素背景变红（用于自定义下划线动画等场景）
       &::after
-        background #f63b3b
+        background var(--hyper-color-hover)
         text-decoration underline
 
   // ─────────────────────────────────────────────
