@@ -219,8 +219,31 @@
     color var(--default-text-color)
     margin-left 3em              // 列表整体向右缩进
     line-height $default-line-height
+    position relative            // 为指示线定位
     &::marker
       color var(--border-color)  // 列表符号颜色（项目点/序号）
+      transition color 0.2s ease
+
+    // 当列表项多于一行时，延续出的指示范围线
+    &::after
+      content ""
+      position absolute
+      top 2em                   // 从第一行下方开始，确保单行时不显示
+      bottom 0.5em              // 距离底部稍微留白
+      left -1.05em              // 与列表符号居中对齐（根据字体可能需要微调 -1em 到 -1.3em）
+      width 2px
+      background-color var(--border-color)
+      opacity 0.4
+      border-radius 1px
+      transition all 0.2s ease
+
+    // 悬停时加深指示线与列表符号颜色
+    &:hover
+      &::after
+        opacity 0.8
+        background-color var(--primary-color)
+      &::marker
+        color var(--primary-color)
 
   // ─────────────────────────────────────────────
   // 【无序列表】ul
