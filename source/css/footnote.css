@@ -19,12 +19,16 @@
     border-radius: 50%;
     margin-left: 1px;
     margin-right: 3px;
-    transition: width 0.2s ease, height 0.2s ease, box-shadow 0.2s ease;
+    transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease, box-shadow 0.2s ease;
 }
 
 .footnote-ref:hover {
     width: 7px;
     height: 7px;
+    margin-top: 0.5px;
+    margin-bottom: 0.5px;
+    margin-left: 1.5px;
+    margin-right: 3.5px;
     box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3);
 }
 
