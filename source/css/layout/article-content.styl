@@ -7,15 +7,22 @@ $temp-toc-width = hexo-config('global.sidebar_width')
 $toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
 $without-toc-container-width = calc(100% - $temp-toc-width)
 $gap = 30px
+$post-left-container-width = 240px
+$post-side-gutter = 38px
+$post-three-column-max-width = 1500px
+$post-article-min-width-before-hide-right = 620px
+$post-article-min-width-before-hide-left = 620px
+$post-hide-right-threshold = $post-article-min-width-before-hide-right + $post-left-container-width + $toc-container-width + ($gap * 2) + ($post-side-gutter * 2)
+$post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-left-container-width + $gap + ($post-side-gutter * 2)
 
 .post-page-container
   display flex
   justify-content center
   position relative
   width 100%
+  overflow visible
 
   +redefine-tablet()
-    display block
     overflow-x hidden
 
   .article-content-container
@@ -34,13 +41,7 @@ $gap = 30px
       box-shadow none !important
       max-width 100vw
 
-    .article-header .avatar img
-          border-radius: $redefine-border-radius-medium * 0.87
-          width 100%
-          height 100%
-          // background var(--avatar-background-color)
-
-    .article-header, .article-header-meta-info
+    .article-header-meta-info
       margin-top 32px
       margin-bottom 16px
 
@@ -172,20 +173,175 @@ $gap = 30px
             -webkit-line-clamp 1
             overflow hidden
 
-  .toc-wrapper-absolute
-    position absolute
-    top 0
-    left 50%
-    margin-left ($content-max-width / 2) + $gap
-    height 100%
-    width $toc-container-width
-    
-    +redefine-tablet()
-      display none !important
+  &.is-post-layout
+    display grid
+    align-items start
+    justify-content center
+    column-gap $gap
+    grid-template-columns $post-left-container-width minmax(0, 1fr)
+    width 100vw
+    max-width none
+    margin-left calc(50% - 50vw)
+    padding 0 $post-side-gutter
+    box-sizing border-box
 
-  .toc-content-container
+    &.has-post-toc
+      grid-template-columns $post-left-container-width minmax(0, 1fr) $toc-container-width
+
+    .post-left-wrapper-absolute
+      grid-column 1
+      position sticky
+      top $navbar-height + $spacing-unit
+      align-self start
+      margin-right 0
+      height fit-content
+      width 100%
+
+    .article-content-container
+      grid-column 2
+      width 100%
+      max-width none
+
+    .toc-wrapper-absolute
+      grid-column 3
+      position sticky
+      top $navbar-height + $spacing-unit
+      align-self start
+      margin-left 0
+      height fit-content
+      width 100%
+
+  .post-left-wrapper-absolute
     position sticky
     top $navbar-height + $spacing-unit
+    align-self start
+    height fit-content
+    width $post-left-container-width
+
+  .post-left-content-container
+    position relative
+    width 100%
+    max-height calc(100vh - 210px)
+    display flex
+    flex-direction column
+    gap 12px
+
+  .post-left-author-card, .post-left-category-card
+    padding 12px
+    border-radius $redefine-border-radius-large
+    box-sizing border-box
+    background var(--background-color)
+    box-shadow var(--redefine-box-shadow-flat)
+    border 1px solid var(--border-color)
+
+  .left-card-title
+    font-size 0.82rem
+    color var(--third-text-color)
+    margin-bottom 10px
+    letter-spacing 0.03em
+
+  .post-left-author-profile
+    display flex
+    align-items center
+    gap 10px
+
+    .avatar
+      width 46px
+      height 46px
+      flex-shrink 0
+      border-radius $redefine-border-radius-medium * 0.87
+      border 1px solid var(--border-color)
+      padding 1px
+      box-sizing border-box
+
+      img
+        width 100%
+        height 100%
+        border-radius $redefine-border-radius-medium * 0.87
+
+    .info
+      min-width 0
+
+    .name
+      color var(--default-text-color)
+      font-size 0.95rem
+      font-weight 600
+      line-height 1.35
+      word-break break-word
+
+    .author-label
+      display inline-flex
+      margin-top 6px
+      border-radius $redefine-border-radius-small
+      font-size 0.72rem
+      line-height 1.2
+      padding 2px 7px
+      color var(--third-text-color)
+      border 1px solid var(--shadow-color-1)
+
+  .post-left-category-card
+    display flex
+    flex-direction column
+    min-height 0
+    flex 1
+
+  .post-left-categories
+    min-height 0
+    flex 1
+    overflow-y auto
+    overflow-x hidden
+    padding-right 4px
+
+    &::-webkit-scrollbar
+      width 6px
+
+    &::-webkit-scrollbar-track
+      background transparent
+
+    &::-webkit-scrollbar-thumb
+      border-radius 20px
+      border 2px solid rgba(183, 183, 183, 0.2)
+
+    .post-left-category-nav-list, .post-left-category-nav-list-child
+      list-style none
+      margin 0
+      padding 0
+
+    .post-left-category-nav-list-item
+      margin-bottom 8px
+      line-height 1.6
+
+      &:last-child
+        margin-bottom 0
+
+    .post-left-category-nav-list-link
+      color var(--second-text-color)
+      text-decoration none
+      transition color 0.2s ease
+
+      &:hover
+        color var(--primary-color)
+
+    .post-left-category-nav-list-count
+      margin-left 6px
+      color var(--third-text-color)
+      font-size 0.75rem
+
+    .post-left-category-nav-list-child
+      margin-top 6px
+      margin-left 10px
+      padding-left 10px
+      border-left 1px dashed var(--border-color)
+
+  .toc-wrapper-absolute
+    position sticky
+    top $navbar-height + $spacing-unit
+    align-self start
+    height fit-content
+    width $toc-container-width
+
+  .toc-content-container
+    position relative
     width 100%
     max-height calc(100vh - 210px)
     overflow-y auto
@@ -221,9 +377,6 @@ $gap = 30px
       0
     )
 
-    +redefine-tablet()
-      display none !important
-
   figure.image-caption
     img
       margin-bottom 0
@@ -234,6 +387,37 @@ $gap = 30px
       text-align center
       font-size 0.9rem
       color var(--third-text-color)
+
+@media screen and (max-width $post-hide-right-threshold)
+  // Keep both sidebars fully visible while shrinking article.
+  // Hide right TOC only when article reaches the suggested minimum width (760px).
+  // threshold = article_min(760) + left + toc + gaps + side_gutters.
+  .post-page-container.is-post-layout.has-post-toc
+    grid-template-columns $post-left-container-width minmax(0, 1fr)
+
+    .toc-wrapper-absolute
+      display none !important
+
+@media screen and (max-width $post-hide-left-threshold)
+  // In two-column mode, continue shrinking article first.
+  // Hide left sidebar when article reaches the suggested minimum width (620px).
+  // threshold = article_min(620) + left + gap + side_gutters.
+  .post-page-container.is-post-layout, .post-page-container.is-post-layout.has-post-toc
+    grid-template-columns minmax(0, 1fr)
+    justify-content stretch
+    padding 0 14px
+
+    .post-left-wrapper-absolute
+      display none !important
+
+    .article-content-container
+      grid-column 1
+
+@media screen and (min-width $post-three-column-max-width)
+  // Cap 3-column layout width on ultra-wide screens and keep it centered.
+  .post-page-container.is-post-layout.has-post-toc
+    width $post-three-column-max-width
+    margin-left s('calc(50% - %s)', ($post-three-column-max-width / 2))
 
 // 针对有封面图的标题
 .article-title-cover
@@ -260,7 +444,6 @@ $gap = 30px
   color var(--second-text-color)
   font-size 0.9em
   font-family GlowSans-Compressed
-  // font-weight 400
   border 1px solid transparent
   transition all 0.2s ease
   

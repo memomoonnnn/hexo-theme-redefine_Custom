@@ -15,6 +15,11 @@
             new SwupProgressPlugin(),
             new SwupScrollPlugin({
                 offset: 80,
+                animateScroll: {
+                    betweenPages: false,
+                    samePageWithHash: true,
+                    samePage: true,
+                },
             }),
             new SwupSlideTheme({
                 mainElement: ".main-content-body",
@@ -24,4 +29,3 @@
         containers: ["#swup"],
     });
 </script>
-

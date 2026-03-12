@@ -1,4 +1,38 @@
-<div class="post-page-container flex relative box-border w-full h-full">
+<div class="post-page-container relative box-border w-full h-full <%= is_post() ? 'is-post-layout' : '' %> <%= (is_post() && theme.articles.toc.enable===true) ? 'has-post-toc' : 'no-post-toc' %>">
+	<% if (is_post()) { %>
+		<% const postAuthorName=(typeof page.author==="string" && (page.author)) || page.author?.name ||
+			theme.info.author || config.author; const postAuthorAvatar=(typeof page.avatar==="string" && (page.avatar))
+			|| page.author?.avatar || theme.defaults.avatar; %>
+			<div class="post-left-wrapper-absolute">
+				<div class="post-left-content-container">
+					<div class="post-left-author-card">
+						<div class="left-card-title"><%- __('author') %></div>
+						<div class="post-left-author-profile">
+							<div class="avatar">
+								<%- image_tag(postAuthorAvatar) %>
+							</div>
+							<div class="info">
+								<div class="name"><%= postAuthorName %></div>
+								<% if (theme.hasOwnProperty('articles') && theme.articles.author_label.enable===true) { %>
+									<span class="author-label">
+										<%- getAuthorLabel(site.posts.length, theme.articles.author_label.auto,
+                                            theme.articles.author_label.list) %>
+									</span>
+									<% } %>
+							</div>
+						</div>
+					</div>
+					<div class="post-left-category-card">
+						<div class="left-card-title"><%- __('categories') %></div>
+						<div class="post-left-categories">
+							<%- list_categories(site.categories, { class: 'post-left-category-nav', depth: 5, style: 'list',
+								show_count: true }) %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% } %>
+
 	<div class="article-content-container">
 
 		<% let hasCover=false; let articleCover="" ; if (page.cover || page.banner || (page.thumbnail && page.thumbnail
@@ -30,42 +64,12 @@
 								<% } %>
 			</div>
 
-			<% if (theme.info.author || config.author) { %>
-				<div class="article-header flex flex-col gap-2 px-2 sm:px-8 md:px-14">
-                    <div class="flex items-center gap-2">
-                        <div
-                            class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                            <%- image_tag((typeof page.avatar==="string" && (page.avatar)) || page.author?.avatar ||
-                                theme.defaults.avatar) %>
-                        </div>
-                        <div class="info flex flex-col justify-between">
-                            <div class="author flex items-center">
-                                <span class="name text-default-text-color text-lg font-semibold">
-                                    <%= (typeof page.author==="string" && (page.author)) || page.author?.name ||
-                                        theme.info.author || config.author %>
-                                </span>
-                                <% if (theme.hasOwnProperty('articles') && theme.articles.author_label.enable===true) { %>
-                                    <span
-                                        class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1"><%-
-                                            getAuthorLabel(site.posts.length, theme.articles.author_label.auto,
-                                            theme.articles.author_label.list) %></span>
-                                    <% } %>
-                            </div>
-                            <div class="meta-info">
-                                <%- partial('pages/post/article-info', {articleObject: page, index: true}) %>
-                            </div>
-                        </div>
-                    </div>
-                    <%- partial('pages/post/article-tags-categories') %>
+			<div class="article-header-meta-info px-2 sm:px-8 md:px-14">
+				<div class="meta-info">
+					<%- partial('pages/post/article-info', {articleObject: page, index: true}) %>
 				</div>
-                <% } else { %>
-					<div class="article-header-meta-info px-2 sm:px-8 md:px-14">
-						<div class="meta-info">
-							<%- partial('pages/post/article-info', {articleObject: page, index: true}) %>
-                            <%- partial('pages/post/article-tags-categories') %>
-						</div>
-					</div>
-					<% } %>
+				<%- partial('pages/post/article-tags-categories') %>
+			</div>
 
 						<% if (page?.expires && page?.expires !=="" ) {%>
 							<div class="article-expire mt-4 mx-2 sm:mx-8 md:mx-14 note p-4 rounded-lg red icon hidden"
