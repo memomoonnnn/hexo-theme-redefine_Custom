@@ -23,16 +23,6 @@
     position relative
     transition padding 0.2s ease
 
-    // .navbar-shrink &
-    //   padding-top $navbar-shrink-height
-    //   transition padding 0.2s ease
-
-    //   +redefine-tablet()
-    //     padding-top: ($navbar-shrink-height * 0.9)
-
-    //   +redefine-mobile()
-    //     padding-top: $navbar-shrink-height * 0.8
-
     // +redefine-tablet()
     //   padding-top: $navbar-height * 0.9
 
@@ -52,15 +42,6 @@
 
       &.hide
         transform translateY(-105%)
-
-      // .navbar-shrink &
-      //   height $navbar-shrink-height
-
-      //   +redefine-tablet()
-      //     height: ($navbar-shrink-height * 0.9)
-
-      //   +redefine-mobile()
-      //     height: $navbar-shrink-height * 0.8
 
       // +redefine-tablet()
       //   height: $navbar-height * 0.9
@@ -108,15 +89,6 @@
     top: $navbar-height + $spacing-unit
     right $spacing-unit
     transition-t('top', '0', '0.2', 'ease')
-
-    // .navbar-shrink &
-    //   top: $navbar-shrink-height + $spacing-unit
-
-    //   +redefine-tablet()
-    //     top ($navbar-shrink-height * 0.9) + $spacing-unit
-
-    //   +redefine-mobile()
-    //     top: ($navbar-shrink-height * 0.8 + $spacing-unit)
 
     // +redefine-tablet()
     //   top: ($navbar-height * 0.9 + $spacing-unit)

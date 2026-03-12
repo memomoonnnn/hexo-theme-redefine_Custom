@@ -1,12 +1,7 @@
 /* utils function */
-import { navbarShrink } from "./layouts/navbarShrink.js";
 import { initTOC } from "./layouts/toc.js";
 import { main } from "./main.js";
 import imageViewer from "./tools/imageViewer.js";
-
-export const navigationState = {
-  isNavigating: false,
-};
 
 export default function initUtils() {
   const utils = {
@@ -103,7 +98,6 @@ export default function initUtils() {
       window.addEventListener("scroll", () => {
         this.updateScrollStyle();
         this.updateTOCScroll();
-        this.updateNavbarShrink();
         // this.updateHomeBannerBlur();
         this.updateAutoHideTools();
       });
@@ -119,12 +113,6 @@ export default function initUtils() {
         initTOC().hasOwnProperty("updateActiveTOCLink")
       ) {
         initTOC().updateActiveTOCLink();
-      }
-    },
-
-    updateNavbarShrink() {
-      if (!navigationState.isNavigating) {
-        navbarShrink.init();
       }
     },
 

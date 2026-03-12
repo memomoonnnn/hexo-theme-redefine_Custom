@@ -31,7 +31,9 @@ $logo-image-box-width = 34px
     position relative
     height 100%
     width 100%
-    max-width $navbar-width-pages
+    max-width $post-three-column-max-width
+    padding 0 $post-side-gutter
+    box-sizing border-box
     display flex
     flex-direction row
     justify-content space-between
@@ -45,12 +47,6 @@ $logo-image-box-width = 34px
     .left
       display flex
       align-items center
-      //transform-origin bottom
-      //transition-t('transform', '0', '0.15', 'ease')
-      //
-      //.navbar-shrink &
-      //  transform scale(0.9)
-      //  transform-origin bottom
 
       if (hexo-config('defaults.logo') && hexo-config('defaults.logo') != '')
         //.logo-image
@@ -142,9 +138,6 @@ $logo-image-box-width = 34px
                 background var(--primary-color)
                 transition transform 0.3s ease
 
-                //.navbar-shrink &
-                //  bottom -($navbar-shrink-height / 2 - 17)
-
             &:hover a .fa-chevron-down
               transform rotate(180deg)
 
@@ -155,9 +148,6 @@ $logo-image-box-width = 34px
             &:hover a, .active
               &::after
                 transform translateX(-50%) scaleX(1)
-                
-                // .navbar-shrink &
-                //  bottom -($navbar-shrink-height / 2 - 17)
 
             &.search
               font-size $desktop-search-icon-font-size
@@ -301,10 +291,15 @@ $logo-image-box-width = 34px
   transform: rotate(90deg);
 }
 
-.transition-navbar
-  transition max-width 0.3s ease-out
+// .transition-navbar
+//   transition max-width 0.3s ease-out
 
-html.is-animating
-  .transition-navbar
-    max-width $navbar-width-pages !important
-    transition max-width 0.2s ease-out
+// html.is-animating
+//   .transition-navbar
+//     max-width $navbar-width-pages !important
+//     transition max-width 0.2s ease-out
+
+@media screen and (max-width 966px)
+  .navbar-container
+    .navbar-content
+      padding 0 $post-mobile-side-gutter

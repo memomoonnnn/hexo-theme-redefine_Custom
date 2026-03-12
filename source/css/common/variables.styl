@@ -9,7 +9,6 @@
 //                                           LAYOUT
 // ========================================================================================
 $navbar-height = 70px;                                           // navbar height
-$navbar-shrink-height = $navbar-height * 0.72;                   // navbar shrink height
 $scroll-progress-bar-height = 2px;                               // scroll progress bar height
 $main-content-width = 80%;                                       // main content width (PC)
 $main-content-width-tablet = 86%;                                // main content width (tablet)
@@ -21,6 +20,9 @@ $spacing-unit = 38px;                                 // component-spacing-value
 $temp-content-max-width = hexo-config('global.content_max_width')
 $content-max-width = $temp-content-max-width ? convert($temp-content-max-width) : 1000px
 $has-toc-content-max-width = $content-max-width * 1.2
+$post-three-column-max-width = 1500px
+$post-side-gutter = 38px
+$post-mobile-side-gutter = 14px
 
 $navbar-width-home-data = hexo-config('navbar.width.home')
 $navbar-width-home = $navbar-width-home-data ? convert($navbar-width-home-data) : 1200px
@@ -141,5 +143,3 @@ $temp-default-line-height = hexo-config('articles.style.line_height')
 $default-article-font-size = $temp-default-article-font-size ? convert($temp-default-article-font-size) : 16px
 $default-line-height = $temp-default-line-height ? $temp-default-line-height : 1.5
 $default-font-weight = 400
-
-

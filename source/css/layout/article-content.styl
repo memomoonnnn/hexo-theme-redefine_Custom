@@ -8,8 +8,6 @@ $toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
 $without-toc-container-width = calc(100% - $temp-toc-width)
 $gap = 30px
 $post-left-container-width = 240px
-$post-side-gutter = 38px
-$post-three-column-max-width = 1500px
 $post-article-min-width-before-hide-right = 620px
 $post-article-min-width-before-hide-left = 620px
 $post-hide-right-threshold = $post-article-min-width-before-hide-right + $post-left-container-width + $toc-container-width + ($gap * 2) + ($post-side-gutter * 2)
@@ -405,7 +403,7 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
   .post-page-container.is-post-layout, .post-page-container.is-post-layout.has-post-toc
     grid-template-columns minmax(0, 1fr)
     justify-content stretch
-    padding 0 14px
+    padding 0 $post-mobile-side-gutter
 
     .post-left-wrapper-absolute
       display none !important
