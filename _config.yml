@@ -65,8 +65,8 @@ global:
       enable: false # Whether to enable custom title fonts
       family:  # Font family
       url:  # Font URL to CSS file
-  # Content max width
-  content_max_width: 1000px
+  # Unified max width (also controls $post-three-column-max-width)
+  post_three_column_max_width: 1500px
   # Sidebar width
   sidebar_width: 210px
   # Effects on mouse hover

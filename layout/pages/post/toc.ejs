@@ -2,7 +2,8 @@
 	<div class="post-toc">
 		<div class="toc-title"><%- __('toc') %></div>
 		<div class="page-title"><%= page.title %></div>
-		<%- toc(
+		<div class="toc-nav-scroll">
+			<%- toc(
                 page.content,
                 {
                     class: 'nav',
@@ -10,6 +11,7 @@
                     max_depth: theme.articles.toc.max_depth,
                 }
         ) %>
+		</div>
 
 	</div>
 </div>

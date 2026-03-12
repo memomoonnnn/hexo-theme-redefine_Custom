@@ -69,7 +69,7 @@
         position relative
         box-sizing border-box
         width $main-content-width
-        max-width $content-max-width
+        max-width $post-three-column-max-width
         height 100%
         transition-t('max-width, width', '0, 0', '0.2, 0.2', 'ease, ease')
 
@@ -83,24 +83,6 @@
 
       .main-content-footer
         width 100%
-
-  .post-tools
-    position fixed
-    top: $navbar-height + $spacing-unit
-    right $spacing-unit
-    transition-t('top', '0', '0.2', 'ease')
-
-    // +redefine-tablet()
-    //   top: ($navbar-height * 0.9 + $spacing-unit)
-    //   right 10px
-    //   transform scale(0.82)
-    //   transform-origin right top
-
-    // +redefine-mobile()
-    //   display none
-    //   top: ($navbar-height * 0.8 + $spacing-unit)
-    //   right 5px
-    //   transform scale(0.72)
 
   .right-side-tools-container
     position fixed

@@ -16,11 +16,9 @@ $main-content-width-mobile = 90%;                                // main content
 $post-tool-button-width = 38px;                                  // post tool button width
 $spacing-unit = 38px;                                 // component-spacing-value (PC)
 
-// main content max width
-$temp-content-max-width = hexo-config('global.content_max_width')
-$content-max-width = $temp-content-max-width ? convert($temp-content-max-width) : 1000px
-$has-toc-content-max-width = $content-max-width * 1.2
-$post-three-column-max-width = 1500px
+// unified max width control
+$temp-post-three-column-max-width = hexo-config('global.post_three_column_max_width')
+$post-three-column-max-width = $temp-post-three-column-max-width ? convert($temp-post-three-column-max-width) : 1500px
 $post-side-gutter = 38px
 $post-mobile-side-gutter = 14px
 

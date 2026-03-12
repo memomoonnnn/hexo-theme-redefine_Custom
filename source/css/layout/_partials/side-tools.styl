@@ -1,13 +1,27 @@
 $right-bottom-tools-width = 42px
 $right-bottom-tools-font-size = 1.3rem
 $right-bottom-tools-border-radius = 12px
+$right-bottom-tools-gap = 8px
 
 .side-tools-container
+  position relative
+  display flex
+  align-items center
+  width fit-content
+
+  ul
+    margin 0
+    padding 0
+    list-style none
+    display flex
+    align-items center
+    flex-wrap nowrap
+
   .right-bottom-tools
     width $right-bottom-tools-width
     height $right-bottom-tools-width
     font-size $right-bottom-tools-font-size
-    margin-bottom 5px
+    margin-right $right-bottom-tools-gap
     cursor pointer
     border-right none
     border-radius $right-bottom-tools-border-radius
@@ -30,7 +44,7 @@ $right-bottom-tools-border-radius = 12px
       width: $right-bottom-tools-width * 0.9
       height: $right-bottom-tools-width * 0.9
       font-size: $right-bottom-tools-font-size * 0.9
-      margin-bottom 2px
+      margin-right 4px
 
     &.rss
       a
@@ -43,9 +57,16 @@ $right-bottom-tools-border-radius = 12px
           background var(--primary-color)
           box-shadow var(--redefine-box-shadow)
 
+    &:last-child
+      margin-right 0
+
   .hidden-tools-list
+    position absolute
+    right s('calc(100% + %s)', $right-bottom-tools-gap)
+    top 50%
+    pointer-events none
     opacity 0
-    transform translateX(250%)
+    transform translate(25%, -50%)
     transition-t('transform, opacity', '0, 0', '0.2, 0.2', 'ease, ease')
 
     .tool-expand-width
@@ -54,7 +75,8 @@ $right-bottom-tools-border-radius = 12px
 
     &.show
       opacity 1
-      transform translateX(0)
+      pointer-events auto
+      transform translate(0, -50%)
 
   .visible-tools-list
     if (hexo-config('global.scroll_progress.percentage') == true)

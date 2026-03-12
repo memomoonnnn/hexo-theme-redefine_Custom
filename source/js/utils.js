@@ -228,23 +228,6 @@ export default function initUtils() {
       fontAdjustPlus.addEventListener("click", increaseFontSize);
       fontAdjustMinus.addEventListener("click", decreaseFontSize);
     },
-    // go comment anchor
-    goComment() {
-      this.goComment_dom = document.querySelector(".go-comment");
-      if (this.goComment_dom) {
-        this.goComment_dom.addEventListener("click", () => {
-          const target = document.querySelector("#comment-anchor");
-          if (target) {
-            const offset = target.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
-          }
-        });
-      }
-    },
-
     // get dom element height
     getElementHeight(selectors) {
       const dom = document.querySelector(selectors);
@@ -353,9 +336,6 @@ export default function initUtils() {
 
   // main font adjust
   utils.globalFontSizeAdjust();
-
-  // go comment
-  utils.goComment();
 
   // init page height handle
   utils.initPageHeightHandle();

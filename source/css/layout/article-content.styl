@@ -25,7 +25,7 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
 
   .article-content-container
     width 100%
-    max-width $content-max-width
+    max-width $post-three-column-max-width
     redefine-container(
       false,
       0,
@@ -340,30 +340,15 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
 
   .toc-content-container
     position relative
+    display flex
+    flex-direction column
     width 100%
+    min-height 0
+    height calc(100vh - 210px)
     max-height calc(100vh - 210px)
-    overflow-y auto
-    overflow-x hidden
+    overflow hidden
     padding 10px
     box-sizing border-box
-    
-    &:hover::-webkit-scrollbar-thumb
-      border 3px solid rgba(183, 183, 183, 0.3)
-
-    &::-webkit-scrollbar
-      width 6px
-      height 6px
-      transition all 0.2s ease
-      display block
-
-    &::-webkit-scrollbar-track
-      background transparent
-      border none
-
-    &::-webkit-scrollbar-thumb
-      border-radius 20px
-      border 3px solid rgba(183, 183, 183, 0)
-      transition all 0.2s ease
 
     box-shadow none !important
     background transparent !important
