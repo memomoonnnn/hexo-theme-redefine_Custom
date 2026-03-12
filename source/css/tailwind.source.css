@@ -75,15 +75,6 @@
   --color-archive-timeline-last-child-color: var(
     --archive-timeline-last-child-color
   );
-  --color-note-blue-title-bg: var(--note-blue-title-bg);
-  --color-note-red-title-bg: var(--note-red-title-bg);
-  --color-note-cyan-title-bg: var(--note-cyan-title-bg);
-  --color-note-green-title-bg: var(--note-green-title-bg);
-  --color-note-yellow-title-bg: var(--note-yellow-title-bg);
-  --color-note-gray-title-bg: var(--note-gray-title-bg);
-  --color-note-type-title-bg: var(--note-type-title-bg);
-  --color-note-black-title-bg: var(--note-black-title-bg);
-  --color-note-purple-title-bg: var(--note-purple-title-bg);
   --color-home-banner-img: var(--home-banner-img);
   --color-home-banner-text-color: var(--home-banner-text-color);
   --color-home-banner-icons-container-border-color: var(
