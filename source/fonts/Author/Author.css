@@ -1,0 +1,19 @@
+@font-face {
+  font-display: swap;
+  font-family: "Author";
+  font-style: normal;
+  font-weight: 700;
+  src: local('Author'),
+  url("Author-Semibold.woff2") format("woff2"),
+  url("Author-Semibold.woff") format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Author";
+  font-style: italic;
+  font-weight: 700;
+  src: local('Author'),
+  url("Author-SemiboldItalic.woff2") format("woff2"),
+  url("Author-SemiboldItalic.woff") format("woff");
+}

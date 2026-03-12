@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'OPPOSans';
+	src:
+		local('OPPO Sans 4.0'),
+		url('OPPO Sans 4.0.woff2') format('woff2'),
+		url('OPPO Sans 4.0.woff') format('woff'),
+		url('OPPO Sans 4.0.ttf') format('ttf');
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: normal;
+}

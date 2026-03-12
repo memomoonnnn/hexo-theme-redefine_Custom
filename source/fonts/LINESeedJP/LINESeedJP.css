@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'LINESeed-Bold';
+    src:
+        url('LINESeedJP_OTF_Eb.woff2') format('woff2'),
+        url('LINESeedJP_OTF_Eb.woff') format('woff'),
+        url('LINESeedJP_OTF_Eb.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINESeed-Normal';
+    src:
+        url('LINESeedJP_OTF_Rg.woff2') format('woff2'),
+        url('LINESeedJP_OTF_Rg.woff') format('woff'),
+        url('LINESeedJP_OTF_Rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
