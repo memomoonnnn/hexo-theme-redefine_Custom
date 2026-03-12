@@ -56,7 +56,8 @@
   // - .link-icon：链接右上角箭头图标的位移动画
   // - :hover / :focus：悬停/聚焦时下划线变红
   // ─────────────────────────────────────────────
-  a
+  // 排除标题自动注入的锚点链接（.headerlink），避免标题受正文链接样式影响
+  a:not(.headerlink)
     font-weight 600
     position relative
     margin-left 0.2em
@@ -304,6 +305,9 @@
     font-family $english-font-family, $chinese-font-family, sans-serif
     color var(--second-text-color)
     line-height $default-line-height
+    // 兜底：即使标题内出现 <a>，也不引入额外左偏移
+    a
+      margin-left 0
 
     /* [Mixin 调用]: +redefine-tablet() 会生成针对平板电脑的媒体查询 */
     +redefine-tablet()
