@@ -1,0 +1,21 @@
+@font-face {
+	font-family: 'Alibaba-PuHuiTi';
+	src:
+		url('AlibabaPuHuiTi-3-105-Heavy.woff2') format('woff2'),
+		url('AlibabaPuHuiTi-3-105-Heavy.woff') format('woff'),
+		url('AlibabaPuHuiTi-3-105-Heavy.ttf') format('truetype');
+	font-weight: 900;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Alibaba-PuHuiTi';
+	src:
+		url('AlibabaPuHuiTi-3-45-Light.woff2') format('woff2'),
+		url('AlibabaPuHuiTi-3-45-Light.woff') format('woff'),
+		url('AlibabaPuHuiTi-3-45-Light.ttf') format('truetype');
+	font-weight: 200;
+	font-display: swap;
+	font-style: normal;
+}

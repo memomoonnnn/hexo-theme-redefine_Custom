@@ -17,3 +17,25 @@
   url("Author-SemiboldItalic.woff2") format("woff2"),
   url("Author-SemiboldItalic.woff") format("woff");
 }
+
+@font-face {
+  font-display: swap;
+  font-family: "Author";
+  font-style: normal;
+  font-weight: 400;
+  src: local('Author'),
+  url("Author-Light.woff2") format("woff2"),
+  url("Author-Light.woff") format("woff"),
+  url("Author-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Author";
+  font-style: italic;
+  font-weight: 400;
+  src: local('Author'),
+  url("Author-LightItalic.woff2") format("woff2"),
+  url("Author-LightItalic.woff") format("woff"),
+  url("Author-LightItalic.otf") format("opentype");
+}

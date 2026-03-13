@@ -3,7 +3,7 @@
 	src:
 		url('GlowSansSC-Extended-medium.woff2') format('woff2'),
 		url('GlowSansSC-Extended-medium.woff') format('woff'),
-		url('GlowSansSC-Extended-medium.otf') format('otf');
+		url('GlowSansSC-Extended-medium.otf') format('opentype');
 	font-weight: 700;
 	font-display: swap;
 	font-style: normal;
@@ -14,7 +14,7 @@
 	src:
 		url('GlowSansSC-Normal-Bold.woff2') format('woff2'),
 		url('GlowSansSC-Normal-Bold.woff') format('woff'),
-		url('GlowSansSC-Normal-Bold.otf') format('otf');
+		url('GlowSansSC-Normal-Bold.otf') format('opentype');
 	font-weight: 700;
 	font-display: swap;
 	font-style: normal;
@@ -25,7 +25,7 @@
 	src:
 		url('GlowSansSC-Condensed-Bold.woff2') format('woff2'),
 		url('GlowSansSC-Condensed-Bold.woff') format('woff'),
-		url('GlowSansSC-Condensed-Bold.otf') format('otf');
+		url('GlowSansSC-Condensed-Bold.otf') format('opentype');
 	font-weight: 400;
 	font-display: swap;
 	font-style: normal;
