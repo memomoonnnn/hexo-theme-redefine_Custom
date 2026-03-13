@@ -2,7 +2,7 @@
 
 $arrow-icon-width = 16px
 $post-nav-max-width = 220px
-$article-title-font-size = 3.2rem
+$article-title-font-size = 3rem
 $temp-toc-width = hexo-config('global.sidebar_width')
 $toc-container-width = $temp-toc-width ? convert($temp-toc-width) : 210px
 $without-toc-container-width = calc(100% - $temp-toc-width)
@@ -370,7 +370,7 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
     height calc(100vh - 210px)
     max-height calc(100vh - 210px)
     overflow hidden
-    padding 10px
+    padding 4px
     box-sizing border-box
 
     box-shadow none !important
@@ -432,8 +432,47 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
 
 // 针对无封面图的标题 (常规)
 .article-title-regular
-  font-family 'OPPOSans', sans-serif !important 
-  font-weight: 700
+  --article-title-fit-min-size 26px
+  --article-title-fit-step 1px
+  font-family 'OPPOSans', sans-serif !important
+  font-weight 700
+  display block
+  width 100%
+  margin-left auto
+  text-align right
+  line-height 1.2
+  white-space nowrap
+  word-break keep-all
+  line-break strict
+  overflow hidden
+  text-overflow ellipsis
+  font-size var(--article-title-fit-font-size, clamp(2.2rem, 5vw, $article-title-font-size)) !important
+
+  &.article-title-regular-two-line
+    display flex
+    flex-direction column
+    align-items flex-end
+    justify-content flex-start
+    gap 0.08em
+    white-space normal
+    overflow visible
+    text-overflow clip
+
+    .article-title-line-1,
+    .article-title-line-2
+      display block
+      width 100%
+      white-space nowrap
+      overflow hidden
+      text-overflow clip
+      text-align right
+
+.article-title-main
+  display inline
+
+.article-title-tail-ellipsis
+  color var(--third-text-color)
+  opacity 0.72
 
 .article-tags-categories-container
   display flex
