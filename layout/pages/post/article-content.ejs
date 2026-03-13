@@ -65,6 +65,11 @@
 			</div>
 
 			<div class="article-header-meta-info px-2 sm:px-8 md:px-14">
+				<% if (page.excerpt && page.excerpt !== "false") { %>
+					<div class="article-header-excerpt">
+						<%- render(page.excerpt, "markdown") %>
+					</div>
+				<% } %>
 				<div class="meta-info">
 					<%- partial('pages/post/article-info', {articleObject: page, index: true}) %>
 				</div>

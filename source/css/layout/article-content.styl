@@ -40,8 +40,31 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
       max-width 100vw
 
     .article-header-meta-info
-      margin-top 32px
+      margin-top 16px
       margin-bottom 16px
+
+      .article-header-excerpt
+        text-align right
+        color var(--third-text-color)
+        font-size 0.92rem
+        line-height 1.6
+        margin-bottom 10px
+
+        p
+          text-align right
+          color inherit
+          margin 0
+
+        p + p
+          margin-top 0.4rem
+
+        a
+          color inherit
+          text-decoration underline
+          text-underline-offset 2px
+
+          &:hover
+            color var(--primary-color)
 
       +redefine-tablet()
         transform scale(0.9)
