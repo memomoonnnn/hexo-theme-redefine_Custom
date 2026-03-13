@@ -199,10 +199,9 @@ navbar:
     left: "#f78736" #left side 
     right: "#367df7"  #right side
     transparency: 35 #percent (10-99)
-  # Navbar width (usually no need to modify)
+  # Navbar width on home banner (usually no need to modify)
   width:
     home: 1200px #home page
-    pages: 1000px #other pages
   # Navbar links
   links:
     Home: 
