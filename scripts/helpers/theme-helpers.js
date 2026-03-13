@@ -98,6 +98,63 @@ hexo.extend.helper.register("getPostUrl", function (rootUrl, path) {
   }
 });
 
+const normalizeCategoryName = (category) => {
+  if (!category) return "";
+  if (typeof category === "string") return category.trim();
+  if (typeof category.name === "string") return category.name.trim();
+  if (typeof category.title === "string") return category.title.trim();
+  return "";
+};
+
+const getFirstCategoryName = (categories) => {
+  if (!categories) return "";
+
+  if (Array.isArray(categories)) {
+    return categories.map(normalizeCategoryName).find(Boolean) || "";
+  }
+
+  if (typeof categories === "string") {
+    return categories.trim();
+  }
+
+  if (typeof categories.toArray === "function") {
+    return getFirstCategoryName(categories.toArray());
+  }
+
+  if (typeof categories.toJSON === "function") {
+    return getFirstCategoryName(categories.toJSON());
+  }
+
+  if (Array.isArray(categories.data)) {
+    return getFirstCategoryName(categories.data);
+  }
+
+  if (typeof categories.forEach === "function") {
+    let firstCategory = "";
+    categories.forEach((category) => {
+      if (!firstCategory) {
+        firstCategory = normalizeCategoryName(category);
+      }
+    });
+    return firstCategory;
+  }
+
+  return normalizeCategoryName(categories);
+};
+
+hexo.extend.helper.register("formatArticleTitle", function (articleLike = {}) {
+  const title =
+    articleLike.title !== undefined && articleLike.title !== null
+      ? String(articleLike.title).trim()
+      : "";
+
+  if (!title) return "";
+
+  const firstCategory = getFirstCategoryName(articleLike.categories);
+
+  return firstCategory ? `【${firstCategory}】${title}` : title;
+});
+
 hexo.extend.helper.register("renderJS", function (path, options = {}) {
   const _js = hexo.extend.helper.get("js").bind(this);
   const { module = false, async = false, swupReload = false } = options;

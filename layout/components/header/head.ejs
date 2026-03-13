@@ -104,10 +104,12 @@
         <% 
         let ogImage = page.og_image || theme.global.open_graph?.image;
         let ogDescription = page.og_description || theme.global.open_graph?.description || page.description || config.description;
+        let ogTitle = page.og_title || (is_post() ? formatArticleTitle(page) : page.title);
         let author = page.author || config.author || 'Redefine Team';
         %>
         <%- open_graph({
             image: ogImage,
+            title: ogTitle,
             author: author,
             description: ogDescription,
             twitter_card: 'summary',
@@ -144,6 +146,8 @@
         title = __('category') + ': ' + page.category;
     } else if (is_tag()) {
         title = __('tag') + ': ' + page.tag;
+    } else if (is_post()) {
+        title = formatArticleTitle(page);
     } else {
         title = __(page.title);
     }

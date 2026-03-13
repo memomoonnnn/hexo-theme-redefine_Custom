@@ -34,7 +34,7 @@
                 <div class="flex flex-col gap-5 px-7 pb-7 <%= post.thumbnail !== false && (post.thumbnail || post.cover || post.banner) ? "pt-5" : "pt-7" %>">
                     <h3 class="home-article-title">
                         <a href="<%- url_for(post.path) %>">
-                            <%= post.title %>
+                            <%= formatArticleTitle(post) %>
                         </a>
                     </h3>
 

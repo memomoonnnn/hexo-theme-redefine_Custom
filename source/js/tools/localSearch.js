@@ -19,6 +19,37 @@ export default function initLocalSearch() {
   const searchInputDom = document.querySelector(".search-input");
   const resultContent = document.getElementById("search-result");
 
+  const normalizeCategoryName = (category) => {
+    if (!category) return "";
+    if (typeof category === "string") return category.trim();
+    if (typeof category.name === "string") return category.name.trim();
+    return "";
+  };
+
+  const getFirstCategoryName = (categories) => {
+    if (!categories) return "";
+    if (typeof categories === "string") return categories.trim();
+    if (!Array.isArray(categories)) {
+      if (Array.isArray(categories.data)) {
+        categories = categories.data;
+      } else if (typeof categories.toArray === "function") {
+        categories = categories.toArray();
+      } else {
+        return normalizeCategoryName(categories);
+      }
+    }
+    return categories.map(normalizeCategoryName).find(Boolean) || "";
+  };
+
+  const formatSearchTitle = (title, categories) => {
+    const normalizedTitle = (title || "").trim();
+    if (!normalizedTitle) return normalizedTitle;
+    const firstCategory = getFirstCategoryName(categories);
+    return firstCategory
+      ? `【${firstCategory}】${normalizedTitle}`
+      : normalizedTitle;
+  };
+
   const getIndexByWord = (word, text, caseSensitive) => {
     let wordLen = word.length;
     if (wordLen === 0) return [];
@@ -250,6 +281,9 @@ export default function initLocalSearch() {
                 title: element.querySelector("title").textContent,
                 content: element.querySelector("content").textContent,
                 url: element.querySelector("url").textContent,
+                categories: [
+                  ...element.querySelectorAll("categories > category"),
+                ].map((categoryElement) => categoryElement.textContent),
               };
             })
           : JSON.parse(res);
@@ -257,7 +291,7 @@ export default function initLocalSearch() {
         datas = datas
           .filter((data) => data.title)
           .map((data) => {
-            data.title = data.title.trim();
+            data.title = formatSearchTitle(data.title, data.categories);
             data.content = data.content
               ? data.content.trim().replace(/<[^>]+>/g, "")
               : "";
