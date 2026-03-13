@@ -12,18 +12,26 @@ $icon-size = 1.2rem
   background rgba(0, 0, 0, 0)
   visibility hidden
   z-index $z-index-8
-  transition-t('visibility, background', '0, 0', '0.3, 0.3', 'ease, ease')
+  backdrop-filter blur(0px)
+  -webkit-backdrop-filter blur(0px)
+  transition-t('visibility, background,backdrop-filter', '0, 0,0', '0.3, 0.3,0.3', 'ease, ease,ease')
 
   &.active
     visibility visible
     background rgba(0, 0, 0, 0.35)
+    backdrop-filter blur(10px)
+    -webkit-backdrop-filter blur(10px)
 
     .search-popup
       transform scale(1)
 
   .search-popup
     background var(--background-color)
-    border-radius 5px
+    border-radius $redefine-border-radius-large
+    border 1px solid var(--border-color)
+    box-shadow var(--redefine-box-shadow-flat)
+    box-sizing border-box
+    overflow hidden
     height 80%
     width 70%
     margin auto
@@ -39,8 +47,8 @@ $icon-size = 1.2rem
 
     .search-header
       background var(--fourth-text-color)
-      border-top-left-radius 2px
-      border-top-right-radius 2px
+      border-top-left-radius $redefine-border-radius-large
+      border-top-right-radius $redefine-border-radius-large
       display flex
       padding 10px
 
