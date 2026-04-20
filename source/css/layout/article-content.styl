@@ -39,19 +39,20 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
       box-shadow none !important
       max-width 100vw
 
+    // 元数据头
     .article-header-meta-info
       margin-top 16px
       margin-bottom 16px
 
       .article-header-excerpt
-        text-align right
+        text-align left
         color var(--third-text-color)
         font-size 0.92rem
         line-height 1.6
         margin-bottom 10px
 
         p
-          text-align right
+          text-align left
           color inherit
           margin 0
 
@@ -427,19 +428,20 @@ $post-hide-left-threshold = $post-article-min-width-before-hide-left + $post-lef
 
 // 针对有封面图的标题
 .article-title-cover
-  font-family 'OPPOSans', sans-serif !important 
-  font-weight: 700
+  font-family 'Alibaba-PuHuiTi', sans-serif !important 
+  font-weight: 900
 
 // 针对无封面图的标题 (常规)
 .article-title-regular
-  --article-title-fit-min-size 26px
+  --article-title-fit-min-size 40px
   --article-title-fit-step 1px
   font-family 'Alibaba-PuHuiTi', sans-serif !important
   font-weight 900
+  cursor default
   display block
   width 100%
   margin-left auto
-  text-align right
+  text-align left
   line-height 1.2
   white-space nowrap
   word-break keep-all

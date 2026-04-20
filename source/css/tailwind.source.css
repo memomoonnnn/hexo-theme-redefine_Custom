@@ -224,3 +224,37 @@
 .scrollbar-hide::-webkit-scrollbar {
     display: none;            /* Chrome, Safari and Opera */
 }
+
+@layer utilities {
+    /*
+      No-cover post title spacing utilities.
+      Keep "text distance to top" and "text distance to sides" equal.
+      Desktop: 3.5rem; Tablet: 2rem; Mobile: 0.5rem.
+    */
+    .post-title-regular-wrap {
+        padding-top: 0 !important;
+    }
+
+    .post-title-regular-spacing {
+        padding-top: 3.5rem;
+        padding-right: 3.5rem;
+        padding-left: 3.5rem;
+        padding-bottom: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+        .post-title-regular-spacing {
+            padding-top: 2rem;
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .post-title-regular-spacing {
+            padding-top: 0.5rem;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+        }
+    }
+}
